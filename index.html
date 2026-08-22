@@ -1,0 +1,1632 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gabriela Martínez Vega · Diseño Gráfico e Ilustración</title>
+<meta name="description" content="CV y portafolio de Gabriela Martínez Vega, diseñadora gráfica en Branding, Motion Graphics e Ilustración. Identidades con carácter, del concepto al movimiento.">
+<meta name="theme-color" content="#83232D">
+<style>
+/* ============================================================
+   DESIGN TOKENS — derivados de DESIGN.md
+   ============================================================ */
+:root {
+  /* colors */
+  --color-primary: #83232D;
+  --color-secondary: #282867;
+  --color-neutral: #000000;
+  --color-surface: #FFFFFF;
+  --color-on-surface: #000000;
+  --color-on-primary: #FFFFFF;
+  --color-on-secondary: #FFFFFF;
+  --color-on-neutral: #FFFFFF;
+
+  /* tintes para texto sobre plano neutro (vista nocturna) */
+  --color-primary-soft: var(--color-primary);
+  --color-secondary-soft: var(--color-secondary);
+  /* acento claro para el hero sobre plano negro */
+  --color-hero-accent: #E3A1A6;
+
+  /* typography */
+  --font-display: 'CoFo Raffine', 'Times New Roman', serif;
+  --font-body: 'Serenity', 'Helvetica Neue', sans-serif;
+
+  /* rounded */
+  --radius-none: 0px;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+
+  /* spacing */
+  --space-base: 8px;
+  --space-xs: 8px;
+  --space-sm: 16px;
+  --space-md: 24px;
+  --space-lg: 32px;
+  --space-xl: 48px;
+  --space-2xl: 64px;
+  --space-3xl: 96px;
+  --space-4xl: 128px;
+  --space-margin-mobile: 16px;
+  --space-margin-tablet: 32px;
+  --space-margin-desktop: 48px;
+  --space-max-width: 1440px;
+  --space-touch-target: 44px;
+
+  /* elevation (solo interactivos) */
+  --shadow-low: 0 1px 2px rgba(0, 0, 0, 0.08);
+  --shadow-hover: 0 4px 8px rgba(0, 0, 0, 0.10);
+
+  /* formas */
+  --border-thin: 1px solid rgba(0, 0, 0, 0.18);
+  --border-thin-on-dark: 1px solid rgba(255, 255, 255, 0.25);
+
+  color-scheme: light;
+}
+
+/* ============================================================
+   VISTA NOCTURNA / DE DÍA
+   ============================================================ */
+[data-theme="dark"] {
+  color-scheme: dark;
+  --color-surface: #0A0A0A;
+  --color-on-surface: #FFFFFF;
+  --color-neutral: #000000;
+  --color-on-neutral: #FFFFFF;
+  --border-thin: 1px solid rgba(255, 255, 255, 0.22);
+  --border-thin-on-dark: 1px solid rgba(255, 255, 255, 0.35);
+  --shadow-low: 0 1px 2px rgba(0, 0, 0, 0.55);
+  --shadow-hover: 0 4px 8px rgba(0, 0, 0, 0.65);
+  --color-primary-soft: #E0A0A7;
+  --color-secondary-soft: #A6AAE8;
+}
+
+/* legibilidad de acentos sobre el plano neutro en vista nocturna */
+[data-theme="dark"] .section-num,
+[data-theme="dark"] .token-accent,
+[data-theme="dark"] .btn-ghost,
+[data-theme="dark"] .tag--red,
+[data-theme="dark"] .card-num { color: var(--color-primary-soft); }
+[data-theme="dark"] .card-meta,
+[data-theme="dark"] .card-phrase,
+[data-theme="dark"] .tag--blue,
+[data-theme="dark"] .skill-note,
+[data-theme="dark"] .bp-range { color: var(--color-secondary-soft); }
+[data-theme="dark"] .main-nav a { color: var(--color-secondary-soft); }
+[data-theme="dark"] .main-nav a:hover { color: var(--color-primary-soft); }
+[data-theme="dark"] .main-nav a.is-active { color: var(--color-on-primary); background: var(--color-primary); opacity: 0.85; border-bottom-color: transparent; }
+[data-theme="dark"] .main-nav a.is-active:hover { color: var(--color-on-primary); opacity: 1; }
+[data-theme="dark"] .text-link { color: var(--color-secondary-soft); }
+[data-theme="dark"] .text-link:hover { color: var(--color-primary-soft); }
+[data-theme="dark"] .theme-toggle:hover { border-color: var(--color-primary-soft); color: var(--color-primary-soft); }
+
+/* ============================================================
+   FONT-FACE — fuentes locales del proyecto
+   ============================================================ */
+@font-face {
+  font-family: 'CoFo Raffine';
+  src: url('fonts/raffine/CoFo-Raffine-Thin.woff2') format('woff2');
+  font-weight: 100; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'CoFo Raffine';
+  src: url('fonts/raffine/CoFo-Raffine-Light.woff2') format('woff2');
+  font-weight: 300; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'CoFo Raffine';
+  src: url('fonts/raffine/CoFo-Raffine-Regular.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'CoFo Raffine';
+  src: url('fonts/raffine/CoFo-Raffine-Medium.woff2') format('woff2');
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'CoFo Raffine';
+  src: url('fonts/raffine/CoFo-Raffine-Bold.woff2') format('woff2');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Serenity';
+  src: url('fonts/serenity/Serenity-Thin.woff2') format('woff2');
+  font-weight: 100; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Serenity';
+  src: url('fonts/serenity/Serenity-Light.woff2') format('woff2');
+  font-weight: 300; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Serenity';
+  src: url('fonts/serenity/Serenity-Light.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Serenity';
+  src: url('fonts/serenity/Serenity-Medium.woff2') format('woff2');
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Serenity';
+  src: url('fonts/serenity/Serenity-DemiBold.woff2') format('woff2');
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Serenity';
+  src: url('fonts/serenity/Serenity-Bold.woff2') format('woff2');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Serenity';
+  src: url('fonts/serenity/Serenity-Heavy.woff2') format('woff2');
+  font-weight: 900; font-style: normal; font-display: swap;
+}
+
+/* ============================================================
+   BASE — mobile-first (body-md)
+   ============================================================ */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--color-surface);
+  color: var(--color-on-surface);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+img, video { max-width: 100%; display: block; }
+a { color: var(--color-secondary); }
+a:hover { color: var(--color-primary); }
+h1, h2, h3, h4, p, ul { margin: 0; }
+ul { padding: 0; list-style: none; }
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+.skip-link {
+  position: absolute; left: -9999px; top: 0; z-index: 200;
+  background: var(--color-primary); color: var(--color-on-primary);
+  padding: 12px 20px; font-weight: 500; text-decoration: none;
+}
+.skip-link:focus { left: 16px; top: 16px; }
+.container {
+  max-width: var(--space-max-width);
+  margin: 0 auto;
+  padding-left: var(--space-margin-mobile);
+  padding-right: var(--space-margin-mobile);
+}
+
+/* tipografía por tokens */
+.t-display {
+  font-family: var(--font-display);
+  font-size: clamp(44px, 12vw, 88px);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+}
+.t-h1 {
+  font-family: var(--font-display);
+  font-size: clamp(34px, 8vw, 56px);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+.t-h2 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 6vw, 36px);
+  font-weight: 400;
+  line-height: 1.1;
+}
+.t-h3 {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.2;
+}
+.t-body { font-size: 16px; line-height: 1.6; }
+.t-caption {
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--color-secondary);
+}
+
+/* ============================================================
+   BOTONES — tokens components
+   ============================================================ */
+.btn {
+  display: inline-block;
+  min-height: var(--space-touch-target);
+  padding: 14px 16px;
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.2;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
+}
+.btn-primary {
+  background: var(--color-primary); color: var(--color-on-primary);
+  border-radius: var(--radius-md);
+}
+.btn-primary:hover { background: var(--color-surface); color: var(--color-primary); transform: translateY(2px); }
+.btn-secondary {
+  background: var(--color-secondary); color: var(--color-on-secondary);
+  border-radius: var(--radius-md);
+}
+.btn-secondary:hover { background: var(--color-surface); color: var(--color-secondary); transform: translateY(2px); }
+.btn-ghost {
+  background: transparent; color: var(--color-on-neutral);
+  border-bottom: 1px solid currentColor;
+  border-radius: var(--radius-none);
+  padding: 14px 4px;
+}
+.btn-ghost:hover { color: var(--color-primary-soft); }
+
+/* ============================================================
+   HEADER — navegación fija + hamburguesa
+   ============================================================ */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--color-neutral);
+  border-bottom: var(--border-thin-on-dark);
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  min-height: 72px;
+  flex-wrap: wrap;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  text-decoration: none;
+  color: var(--color-on-neutral);
+  animation: brand-float 6s ease-in-out infinite;
+}
+.brand img:not(.brand-name) { width: 40px; height: 40px; object-fit: contain; }
+.brand .brand-name { width: auto; height: 40px; object-fit: contain; }
+@keyframes brand-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--color-on-neutral);
+  border: 1px solid var(--color-on-neutral);
+  min-height: var(--space-touch-target);
+  padding: 8px 14px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: var(--radius-none);
+}
+.theme-toggle:hover { border-color: var(--color-primary-soft); color: var(--color-primary-soft); }
+.theme-toggle svg { width: 18px; height: 18px; }
+[data-theme="light"] .theme-toggle .icon-moon,
+[data-theme="dark"] .theme-toggle .icon-sun { display: none; }
+
+.nav-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--color-on-neutral);
+  border: 1px solid var(--color-on-neutral);
+  min-height: var(--space-touch-target);
+  padding: 8px 14px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.nav-toggle:hover { border-color: var(--color-primary-soft); color: var(--color-primary-soft); }
+.nav-toggle svg { width: 20px; height: 20px; }
+
+.main-nav {
+  width: 100%;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+.main-nav.is-open { max-height: 480px; }
+.main-nav ul { display: flex; flex-direction: column; gap: 4px; padding: var(--space-xs) 0 var(--space-sm); }
+.main-nav a {
+  display: block;
+  padding: 10px 0;
+  color: var(--color-on-neutral);
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+}
+.main-nav a:hover { color: var(--color-primary-soft); }
+.main-nav a.is-active:hover { color: var(--color-on-secondary); opacity: 1; }
+.main-nav a.is-active {
+  color: var(--color-on-secondary);
+  background: var(--color-secondary);
+  opacity: 0.85;
+  border-bottom-color: transparent;
+  padding: 10px 16px;
+}
+
+@media (min-width: 1180px) {
+  .nav-toggle { display: none; }
+  .main-nav { width: auto; max-height: none; overflow: visible; }
+  .main-nav ul { flex-direction: row; gap: var(--space-md); padding: 0; }
+  .main-nav a { padding: var(--space-xs) 4px; }
+}
+
+/* ============================================================
+   HERO — inicio (band-neutral)
+   ============================================================ */
+.hero {
+  background: var(--color-neutral);
+  color: var(--color-on-neutral);
+  padding-top: var(--space-2xl);
+  padding-bottom: var(--space-2xl);
+  overflow: hidden;
+  position: relative;
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('logo/mono_rojo.png');
+  background-size: 46%;
+  background-repeat: no-repeat;
+  background-position: right -6% bottom -10%;
+  opacity: 0.16;
+  pointer-events: none;
+}
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-xl);
+  align-items: end;
+  position: relative;
+  z-index: 1;
+}
+.hero-kicker {
+  font-size: 12px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--color-on-neutral);
+  opacity: 0.75;
+  margin-bottom: var(--space-sm);
+}
+.hero-name {
+  font-family: var(--font-display);
+  font-size: clamp(44px, 11vw, 92px);
+  font-weight: 400;
+  line-height: 0.92;
+  letter-spacing: -0.01em;
+  margin-bottom: var(--space-sm);
+}
+.hero-name .hero-word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.5em) scale(0.96);
+  animation: word-cycle 6.5s ease-in-out infinite;
+}
+.hero-name .hero-word:nth-child(1) { animation-delay: 0s; }
+.hero-name .hero-word:nth-child(2) { animation-delay: 0.7s; }
+.hero-name .hero-word:nth-child(3) { animation-delay: 1.4s; }
+.hero-name em { font-style: italic; color: var(--color-hero-accent); }
+@keyframes word-cycle {
+  0%   { opacity: 0; transform: translateY(0.5em) scale(0.96); }
+  14%  { opacity: 1; transform: translateY(0) scale(1); }
+  70%  { opacity: 1; transform: translateY(0); }
+  84%  { opacity: 0; transform: translateY(-0.18em); }
+  100% { opacity: 0; transform: translateY(-0.18em); }
+}
+.hero-role {
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--color-on-neutral);
+  margin-bottom: var(--space-sm);
+}
+.hero-value {
+  font-size: 20px;
+  line-height: 1.6;
+  max-width: 46ch;
+  opacity: 0.88;
+  margin-bottom: var(--space-lg);
+}
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  align-items: center;
+}
+.hero-social {
+  display: flex;
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
+}
+.hero-social a {
+  color: var(--color-on-neutral);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--space-touch-target);
+  min-width: var(--space-touch-target);
+}
+.hero-social a:hover { color: var(--color-primary-soft); }
+.hero-social svg { width: 22px; height: 22px; }
+
+.hero-photo {
+  margin: 0;
+  position: relative;
+  align-self: center;
+  animation: hero-float 6s ease-in-out infinite;
+}
+.hero-photo::before {
+  content: "";
+  position: absolute;
+  inset: var(--space-xs);
+  border: 2px solid var(--color-hero-accent);
+  z-index: 3;
+  pointer-events: none;
+}
+.hero-photo::after {
+  content: "";
+  position: absolute;
+  inset: calc(var(--space-sm) * -1);
+  border: 1px solid var(--color-hero-accent);
+  animation: hero-frame-breathe 4s ease-in-out infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+.hero-photo img {
+  width: auto;
+  max-width: 100%;
+  max-height: 480px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  margin-inline: auto;
+  border: var(--border-thin-on-dark);
+  position: relative;
+  z-index: 2;
+}
+
+/* ornamento de esquinas: abanico solar (Art Deco) + curva fluida (Art Nouveau) */
+.hero-frame {
+  position: absolute;
+  width: 72px;
+  height: 72px;
+  z-index: 4;
+  pointer-events: none;
+}
+.hero-frame--tl { top: -18px; left: -18px; clip-path: polygon(0 0, 100% 0, 0 100%); background: radial-gradient(circle at 0 0, var(--color-hero-accent) 0 2.5px, transparent 3px); }
+.hero-frame--tr { top: -18px; right: -18px; clip-path: polygon(100% 0, 0 0, 100% 100%); background: radial-gradient(circle at 100% 0, var(--color-hero-accent) 0 2.5px, transparent 3px); }
+.hero-frame--bl { bottom: -18px; left: -18px; clip-path: polygon(0 100%, 0 0, 100% 100%); background: radial-gradient(circle at 0 100%, var(--color-hero-accent) 0 2.5px, transparent 3px); }
+.hero-frame--br { bottom: -18px; right: -18px; clip-path: polygon(100% 100%, 100% 0, 0 100%); background: radial-gradient(circle at 100% 100%, var(--color-hero-accent) 0 2.5px, transparent 3px); }
+.hero-frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  animation: hero-sunspin 16s linear infinite;
+}
+.hero-frame--tl::before { background: repeating-conic-gradient(from 90deg at 0 0, var(--color-hero-accent) 0deg 9deg, transparent 9deg 18deg); transform-origin: 0 0; }
+.hero-frame--tr::before { background: repeating-conic-gradient(from 180deg at 100% 0, var(--color-hero-accent) 0deg 9deg, transparent 9deg 18deg); transform-origin: 100% 0; }
+.hero-frame--bl::before { background: repeating-conic-gradient(from 0deg at 0 100%, var(--color-hero-accent) 0deg 9deg, transparent 9deg 18deg); transform-origin: 0 100%; }
+.hero-frame--br::before { background: repeating-conic-gradient(from 270deg at 100% 100%, var(--color-hero-accent) 0deg 9deg, transparent 9deg 18deg); transform-origin: 100% 100%; }
+.hero-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%2772%27%20height%3D%2772%27%20viewBox%3D%270%200%2072%2072%27%20fill%3D%27none%27%3E%3Cpath%20d%3D%27M6%206%20C26%209%2C%2056%2024%2C%2054%2048%20C53%2062%2C%2041%2070%2C%2031%2063%20C24%2058%2C%2025%2047%2C%2035%2042%20C42%2038%2C%2050%2042%2C%2050%2051%27%20stroke%3D%27%23E3A1A6%27%20stroke-width%3D%271.5%27%20stroke-linecap%3D%27round%27/%3E%3C/svg%3E") 0 0 / 72px 72px no-repeat;
+  opacity: 0.85;
+}
+.hero-frame--tr::after { transform: rotate(90deg); }
+.hero-frame--bl::after { transform: rotate(-90deg); }
+.hero-frame--br::after { transform: rotate(180deg); }
+
+@keyframes hero-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes hero-frame-breathe {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 0.9; }
+}
+@keyframes hero-sunspin {
+  to { transform: rotate(360deg); }
+}
+
+/* ============================================================
+   SECCIONES
+   ============================================================ */
+.section {
+  padding-top: var(--space-2xl);
+  padding-bottom: var(--space-2xl);
+  border-bottom: var(--border-thin);
+}
+.section-head {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-xl);
+}
+.section-num {
+  font-family: var(--font-display);
+  font-size: 32px;
+  line-height: 1;
+  color: var(--color-primary);
+}
+.section-intro {
+  max-width: 60ch;
+  margin-top: var(--space-xs);
+}
+
+/* ============================================================
+   SOBRE MÍ
+   ============================================================ */
+#sobre-mi.section {
+  position: relative;
+  overflow: hidden;
+  padding-top: var(--space-xl);
+  padding-bottom: var(--space-xl);
+}
+#sobre-mi::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('logo/mono_rojo.png');
+  background-size: 42%;
+  background-repeat: no-repeat;
+  background-position: 100% 15%;
+  opacity: 0.06;
+  pointer-events: none;
+  z-index: 0;
+}
+#sobre-mi .container {
+  position: relative;
+  z-index: 1;
+}
+#sobre-mi .section-head {
+  grid-template-columns: 1fr;
+  gap: var(--space-sm);
+  align-items: start;
+  margin-bottom: var(--space-sm);
+}
+#sobre-mi .section-head .t-h2 {
+  font-size: clamp(40px, 7vw, 56px);
+}
+#sobre-mi .section-head .section-intro {
+  font-size: 18px;
+  margin-top: var(--space-xs);
+}
+#sobre-mi .t-h2 .hero-word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.5em) scale(0.96);
+  animation: word-cycle 6.5s ease-in-out infinite;
+}
+#sobre-mi .t-h2 .hero-word:nth-child(1) { animation-delay: 0s; }
+#sobre-mi .t-h2 .hero-word:nth-child(2) { animation-delay: 0.7s; }
+.sobre-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+  align-items: center;
+}
+.sobre-text p + p { margin-top: var(--space-sm); }
+.sobre-text strong { font-weight: 600; }
+.sobre-photo {
+  margin: 0;
+  position: relative;
+  order: -1;
+}
+.sobre-photo::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border: 1px solid var(--color-secondary-soft);
+  z-index: 0;
+  animation: sobre-frame-in 1.1s ease-out both;
+}
+.sobre-photo::after {
+  content: "";
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 28px;
+  height: 28px;
+  border-top: 3px solid var(--color-primary);
+  border-right: 3px solid var(--color-primary);
+  animation: sobre-frame-in 1.1s ease-out both;
+}
+.sobre-photo img {
+  width: auto;
+  max-width: 100%;
+  max-height: 520px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  margin-inline: auto;
+  border: var(--border-thin);
+  position: relative;
+  z-index: 1;
+  animation: sobre-photo-in 0.9s ease-out both;
+}
+@keyframes sobre-frame-in {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes sobre-photo-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   ESPECIALIDADES
+   ============================================================ */
+.especialidades-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+}
+.especialidad-card {
+  border: var(--border-thin);
+  border-top: 3px solid var(--color-secondary);
+  background: var(--color-surface);
+  padding: var(--space-md);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.especialidad-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+.especialidad-card .card-num {
+  font-family: var(--font-display);
+  font-size: 36px;
+  line-height: 1;
+  color: var(--color-primary);
+  margin-bottom: var(--space-sm);
+}
+.especialidad-card h3 { margin-bottom: var(--space-xs); }
+.especialidad-card p { font-size: 15px; color: var(--color-on-surface); }
+
+/* ============================================================
+   EXPERIENCIA / EDUCACIÓN
+   ============================================================ */
+.experiencia-list {
+  display: grid;
+  gap: var(--space-sm);
+}
+.experiencia-item {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-xs);
+  border: var(--border-thin);
+  padding: var(--space-sm);
+}
+.experiencia-item .exp-rol {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+.experiencia-item .exp-lugar {
+  font-size: 14px;
+  color: var(--color-secondary);
+  line-height: 1.5;
+}
+
+.educacion-list { display: grid; gap: var(--space-sm); }
+.educacion-item {
+  border: var(--border-thin);
+  padding: var(--space-sm);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  align-items: baseline;
+  justify-content: space-between;
+}
+.educacion-item .edu-main { font-size: 16px; font-weight: 500; line-height: 1.4; }
+.educacion-item .edu-sub { font-size: 13px; color: var(--color-secondary); }
+.tags { display: flex; flex-wrap: wrap; gap: var(--space-xs); margin-top: var(--space-xs); }
+.tag {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+}
+.tag--red { background: var(--color-primary); color: var(--color-on-primary); }
+.tag--blue { background: var(--color-secondary); color: var(--color-on-secondary); }
+
+/* ============================================================
+   HABILIDADES
+   ============================================================ */
+.habilidades-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+}
+.habilidades-col h3 {
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--color-secondary);
+  margin-bottom: var(--space-sm);
+}
+.skill-list { display: grid; gap: var(--space-xs); }
+.skill-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-sm);
+  padding: var(--space-xs) 0;
+  border-bottom: var(--border-thin);
+  font-size: 15px;
+}
+.skill-item:last-child { border-bottom: none; }
+.skill-note { font-size: 12px; color: var(--color-secondary); white-space: nowrap; }
+
+/* ============================================================
+   PROYECTOS
+   ============================================================ */
+.proyectos-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+}
+.project-card {
+  display: block;
+  width: 100%;
+  text-align: left;
+  font-family: var(--font-body);
+  background: var(--color-surface);
+  color: var(--color-on-surface);
+  border: var(--border-thin);
+  border-radius: var(--radius-none);
+  padding: 0;
+  cursor: pointer;
+  overflow: hidden;
+  transition: box-shadow 0.18s ease, transform 0.18s ease;
+}
+.project-card:hover, .project-card:focus-visible {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-3px);
+}
+.project-card .pc-media {
+  background: var(--color-surface);
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.project-card .pc-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+.project-card:hover .pc-media img { transform: scale(1.03); }
+.project-card .pc-body { padding: var(--space-sm); }
+.project-card .pc-meta {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+  margin-bottom: var(--space-xs);
+}
+.project-card h3 { margin-bottom: var(--space-xs); }
+.project-card .pc-desc { font-size: 14px; line-height: 1.5; color: var(--color-secondary); }
+.project-card .pc-link {
+  display: inline-block;
+  margin-top: var(--space-xs);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+/* ============================================================
+   CONTACTO
+   ============================================================ */
+.contacto-band {
+  background: var(--color-secondary);
+  color: var(--color-on-secondary);
+  padding: var(--space-2xl) var(--space-margin-mobile);
+}
+.contacto-inner {
+  max-width: var(--space-max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+}
+.contacto-inner h2 {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 8vw, 48px);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  max-width: 16ch;
+}
+.contacto-list { display: grid; gap: var(--space-xs); }
+.contacto-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--space-xs) 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+.contacto-item .c-label {
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+.contacto-item a, .contacto-item span {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-on-secondary);
+  text-decoration: none;
+  word-break: break-word;
+}
+.contacto-item a:hover { text-decoration: underline; color: var(--color-on-secondary); }
+.contacto-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.site-footer {
+  background: var(--color-neutral);
+  color: var(--color-on-neutral);
+  border-top: 3px solid var(--color-secondary);
+  padding: var(--space-2xl) var(--space-margin-mobile);
+}
+.footer-inner {
+  max-width: var(--space-max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+}
+.footer-brand { display: flex; align-items: center; gap: var(--space-sm); }
+.footer-brand img { width: 56px; height: 56px; object-fit: contain; }
+.footer-brand .fb-name {
+  font-family: var(--font-display);
+  font-size: 22px;
+  line-height: 1.1;
+}
+.footer-brand .fb-role { font-size: 12px; opacity: 0.75; letter-spacing: 0.1em; text-transform: uppercase; }
+.footer-contact { display: flex; flex-wrap: wrap; gap: var(--space-sm) var(--space-lg); font-size: 14px; }
+.footer-contact a { color: var(--color-on-neutral); text-decoration: none; }
+.footer-contact a:hover { text-decoration: underline; color: var(--color-primary-soft); }
+.footer-phrase {
+  font-family: var(--font-display);
+  font-size: 24px;
+  line-height: 1.2;
+  opacity: 0.9;
+}
+
+/* ============================================================
+   MODAL DE PROYECTO
+   ============================================================ */
+dialog {
+  border: none;
+  border-radius: var(--radius-none);
+  background: var(--color-surface);
+  color: var(--color-on-surface);
+  padding: 0;
+  width: min(92vw, 880px);
+  max-height: 90vh;
+}
+dialog::backdrop { background: rgba(0, 0, 0, 0.72); }
+.modal-scroll { overflow-y: auto; max-height: 90vh; }
+.modal-hero { position: relative; }
+.modal-hero img {
+  width: 100%;
+  max-height: 420px;
+  object-fit: cover;
+}
+.modal-close {
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-sm);
+  background: var(--color-neutral);
+  color: var(--color-on-neutral);
+  border: var(--border-thin-on-dark);
+  min-height: var(--space-touch-target);
+  min-width: var(--space-touch-target);
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-close:hover { background: var(--color-primary); border-color: var(--color-primary); }
+.modal-body { padding: var(--space-md); }
+.modal-meta {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+  margin-bottom: var(--space-xs);
+}
+.modal-body h3 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 6vw, 40px);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  margin-bottom: var(--space-sm);
+}
+.modal-block { margin-bottom: var(--space-md); }
+.modal-block h4 {
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-secondary);
+  margin-bottom: 6px;
+}
+.modal-block p { font-size: 15px; line-height: 1.6; }
+.modal-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xs);
+  margin-top: var(--space-sm);
+}
+.modal-gallery img, .modal-gallery video {
+  width: 100%;
+  max-height: 320px;
+  object-fit: cover;
+  border: var(--border-thin);
+}
+
+/* ============================================================
+   RESPONSIVE — 600px / 1180px / 1440px
+   ============================================================ */
+@media (min-width: 600px) {
+  .container { padding-left: var(--space-margin-tablet); padding-right: var(--space-margin-tablet); }
+  .especialidades-grid { grid-template-columns: repeat(3, 1fr); }
+  .proyectos-grid { grid-template-columns: repeat(2, 1fr); }
+  .sobre-grid { grid-template-columns: 6fr 5fr; }
+  .habilidades-grid { grid-template-columns: 1fr 1fr; }
+  .experiencia-item { grid-template-columns: 1fr; }
+  .contacto-inner { grid-template-columns: 1fr 1fr; }
+  .footer-inner { grid-template-columns: 1fr 1fr; }
+}
+
+@media (min-width: 1180px) {
+  .container { padding-left: var(--space-margin-desktop); padding-right: var(--space-margin-desktop); }
+  .section { padding-top: var(--space-3xl); padding-bottom: var(--space-3xl); }
+  .section-head { grid-template-columns: 1fr 3fr; gap: var(--space-lg); align-items: start; }
+  .section-num { font-size: 48px; }
+  .hero { padding-top: var(--space-3xl); padding-bottom: var(--space-3xl); }
+  .hero-inner { grid-template-columns: 7fr 5fr; }
+  .hero-photo img { max-height: 560px; }
+  .hero::after { background-size: 40%; background-position: right center; }
+  .contacto-band { padding: var(--space-3xl) var(--space-margin-desktop); }
+  .site-footer { padding: var(--space-3xl) var(--space-margin-desktop); }
+  .proyectos-grid { grid-template-columns: repeat(3, 1fr); }
+  .modal-body { padding: var(--space-lg); }
+}
+
+@media (min-width: 1440px) {
+  .proyectos-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="#inicio" aria-label="Gabriela Martínez Vega, inicio">
+      <img src="logo/mono_rojo.png" alt="">
+      <img class="brand-name" src="logo/nombre_blanco_crop.png" alt="Gabriela Martínez Vega">
+    </a>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menú">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <span>Menú</span>
+      </button>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label="Cambiar entre vista de día y vista nocturna">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+      </button>
+    </div>
+    <nav class="main-nav" id="menu-principal" aria-label="Navegación principal">
+      <ul>
+        <li><a class="is-active" href="#inicio" aria-current="page">Inicio</a></li>
+        <li><a href="#sobre-mi">Sobre mí</a></li>
+        <li><a href="#especialidades">Especialidades</a></li>
+        <li><a href="#experiencia">Experiencia</a></li>
+        <li><a href="#educacion">Educación</a></li>
+        <li><a href="#habilidades">Habilidades</a></li>
+        <li><a href="#proyectos">Proyectos</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="contenido">
+
+  <!-- ============ INICIO ============ -->
+  <section id="inicio" class="hero" aria-labelledby="hero-name">
+    <div class="container hero-inner">
+      <div>
+        <p class="hero-kicker">Diseño Gráfico e Ilustración</p>
+        <h1 id="hero-name" class="hero-name">
+          <span class="hero-word">Gabriela</span> <em class="hero-word">Martínez</em> <span class="hero-word">Vega</span>
+        </h1>
+        <p class="hero-role">Branding · Motion Graphics · Ilustración</p>
+        <p class="hero-value">"Construyo identidades visuales con carácter y las llevo del concepto a la imagen, la ilustración y el movimiento."</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#proyectos">Ver proyectos</a>
+          <a class="btn btn-secondary" href="#contacto">Contáctame</a>
+          <a class="btn btn-ghost" href="archivos%20externos/CV_GabrielaMart%C3%ADnez.pdf" download>Descargar CV</a>
+          <a class="btn btn-ghost" href="archivos%20externos/Portafolio_Mart%C3%ADnezVegaGabriela.pdf" download>Portafolio</a>
+        </div>
+        <ul class="hero-social" aria-label="Redes sociales">
+          <li><a href="mailto:gaby.vegart@gmail.com" aria-label="Correo electrónico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="0"/><path d="m3 7 9 6 9-6"/></svg></a></li>
+          <li><a href="https://www.instagram.com/_gaby.mtzvega_" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="0"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg></a></li>
+          <li><a href="https://www.tiktok.com/@_gaby.mtzvega_" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M14 3v12a4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4"/><path d="M14 7c.8 2.3 2.6 4 5 4.2"/></svg></a></li>
+        </ul>
+      </div>
+      <figure class="hero-photo">
+        <span class="hero-frame hero-frame--tl" aria-hidden="true"></span>
+        <span class="hero-frame hero-frame--tr" aria-hidden="true"></span>
+        <span class="hero-frame hero-frame--bl" aria-hidden="true"></span>
+        <span class="hero-frame hero-frame--br" aria-hidden="true"></span>
+        <img src="img/foto_uno.jpeg" alt="Retrato de Gabriela Martínez Vega, diseñadora gráfica.">
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ SOBRE MÍ ============ -->
+  <section id="sobre-mi" class="section" aria-labelledby="sobre-title">
+    <div class="container">
+      <div class="sobre-grid">
+        <figure class="sobre-photo">
+          <img src="img/foto_dos.jpeg" alt="Gabriela Martínez Vega en su espacio de trabajo.">
+        </figure>
+        <div class="sobre-info">
+          <div class="section-head sobre-head">
+            <h2 id="sobre-title" class="t-h2"><span class="hero-word">Sobre</span> <span class="hero-word">mí</span></h2>
+            <p class="section-intro t-body">Quién soy, en qué trabajo y de dónde viene mi formación.</p>
+          </div>
+          <div class="sobre-text">
+            <p>Soy <strong>Gabriela Martínez Vega</strong>, diseñadora gráfica enfocada en <strong>Branding, Motion Graphics e Ilustración</strong>. Mi trabajo parte de la construcción de conceptos y sistemas visuales capaces de adaptarse a distintos medios. Me interesa combinar identidad, tipografía, composición, narrativa visual e ilustración para desarrollar piezas con personalidad y coherencia.</p>
+            <p>Actualmente curso <strong>Diseño Gráfico Digital en la Universidad La Salle de México</strong>. Mi formación ha reforzado mi interés por la identidad visual, la metodología, la producción gráfica y la comunicación visual. Me describo profesionalmente como responsable, organizada y con facilidad para trabajar en equipo.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ESPECIALIDADES ============ -->
+  <section id="especialidades" class="section" aria-labelledby="esp-title">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-num">02</p>
+        <div>
+          <h2 id="esp-title" class="t-h2">Especialidades</h2>
+          <p class="section-intro t-body">Tres áreas principales, con el mismo peso en mi práctica.</p>
+        </div>
+      </div>
+      <div class="especialidades-grid">
+        <article class="especialidad-card">
+          <p class="card-num">01</p>
+          <h3 class="t-h3">Branding</h3>
+          <p>Desarrollo de conceptos, identidad visual, logotipos, sistemas gráficos, aplicaciones de marca y piezas de comunicación.</p>
+        </article>
+        <article class="especialidad-card">
+          <p class="card-num">02</p>
+          <h3 class="t-h3">Motion Graphics</h3>
+          <p>Animación de elementos gráficos, tipografía, composiciones y recursos visuales para contenidos digitales y comunicación de marca.</p>
+        </article>
+        <article class="especialidad-card">
+          <p class="card-num">03</p>
+          <h3 class="t-h3">Ilustración</h3>
+          <p>Ilustraciones aplicadas a identidad, publicidad, editorial, packaging y piezas conceptuales.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EXPERIENCIA ============ -->
+  <section id="experiencia" class="section" aria-labelledby="exp-title">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-num">03</p>
+        <div>
+          <h2 id="exp-title" class="t-h2">Experiencia</h2>
+          <p class="section-intro t-body">Trayectoria en producción, identidad y comunicación visual.</p>
+        </div>
+      </div>
+      <ul class="experiencia-list">
+        <li class="experiencia-item">
+          <div>
+            <p class="exp-rol">Prácticas · Producción, serigrafía e impresión</p>
+            <p class="exp-lugar">Impresión Digital, Offset y Serigrafía</p>
+          </div>
+        </li>
+        <li class="experiencia-item">
+          <div>
+            <p class="exp-rol">Prácticas freelance · Identidad de marca</p>
+            <p class="exp-lugar">Diseño de identidad, dos meses</p>
+          </div>
+        </li>
+        <li class="experiencia-item">
+          <div>
+            <p class="exp-rol">Comunicación · Programa "Enlaces"</p>
+            <p class="exp-lugar">Publicidad y convocatorias digitales</p>
+          </div>
+        </li>
+        <li class="experiencia-item">
+          <div>
+            <p class="exp-rol">Taller Vertical · Universidad La Salle</p>
+            <p class="exp-lugar">Participación consecutiva; segundo lugar en una ocasión</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ EDUCACIÓN ============ -->
+  <section id="educacion" class="section" aria-labelledby="edu-title">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-num">04</p>
+        <div>
+          <h2 id="edu-title" class="t-h2">Educación y reconocimientos</h2>
+          <p class="section-intro t-body">Formación académica y distinciones.</p>
+        </div>
+      </div>
+      <ul class="educacion-list">
+        <li class="educacion-item">
+          <div>
+            <p class="edu-main">Universidad La Salle de México</p>
+            <p class="edu-sub">Licenciatura en Diseño Gráfico Digital · En curso</p>
+          </div>
+          <span class="tag tag--blue">En curso</span>
+        </li>
+        <li class="educacion-item">
+          <div>
+            <p class="edu-main">Certificado de Principios de Stop Motion</p>
+            <p class="edu-sub">Formación complementaria en animación</p>
+          </div>
+          <span class="tag tag--blue">Certificado</span>
+        </li>
+        <li class="educacion-item">
+          <div>
+            <p class="edu-main">Segundo lugar · Concurso Taller Vertical</p>
+            <p class="edu-sub">Universidad La Salle de México</p>
+          </div>
+          <span class="tag tag--red">2.º lugar</span>
+        </li>
+        <li class="educacion-item">
+          <div>
+            <p class="edu-main">Nominación · "Talento de la Generación"</p>
+            <p class="edu-sub">Gala Fratello, premiación escolar</p>
+          </div>
+          <span class="tag tag--red">Nominación</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ HABILIDADES ============ -->
+  <section id="habilidades" class="section" aria-labelledby="hab-title">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-num">05</p>
+        <div>
+          <h2 id="hab-title" class="t-h2">Habilidades y herramientas</h2>
+          <p class="section-intro t-body">Conocimientos de diseño y herramientas de producción.</p>
+        </div>
+      </div>
+      <div class="habilidades-grid">
+        <div class="habilidades-col">
+          <h3>Habilidades de diseño</h3>
+          <ul class="skill-list">
+            <li class="skill-item"><span>Branding e identidad visual</span></li>
+            <li class="skill-item"><span>Composición</span></li>
+            <li class="skill-item"><span>Tipografía</span></li>
+            <li class="skill-item"><span>Ilustración</span></li>
+            <li class="skill-item"><span>Diseño digital</span></li>
+            <li class="skill-item"><span>Redes, editorial e impresión</span></li>
+            <li class="skill-item"><span>Producción gráfica</span></li>
+          </ul>
+        </div>
+        <div class="habilidades-col">
+          <h3>Herramientas</h3>
+          <ul class="skill-list">
+            <li class="skill-item"><span>Adobe Illustrator</span><span class="skill-note">Vector</span></li>
+            <li class="skill-item"><span>Adobe Photoshop</span><span class="skill-note">Imagen</span></li>
+            <li class="skill-item"><span>Adobe InDesign</span><span class="skill-note">Editorial</span></li>
+            <li class="skill-item"><span>Adobe After Effects</span><span class="skill-note">Motion</span></li>
+            <li class="skill-item"><span>Figma</span><span class="skill-note">UI</span></li>
+          </ul>
+          <h3 style="margin-top:var(--space-md);">Idiomas</h3>
+          <ul class="skill-list">
+            <li class="skill-item"><span>Español</span><span class="skill-note">Nativo</span></li>
+            <li class="skill-item"><span>Inglés</span><span class="skill-note">Nivel B1 · Cambridge</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROYECTOS ============ -->
+  <section id="proyectos" class="section" aria-labelledby="proy-title">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-num">06</p>
+        <div>
+          <h2 id="proy-title" class="t-h2">Proyectos seleccionados</h2>
+          <p class="section-intro t-body">Una muestra de cómo pienso y resuelvo visualmente. Cada caso abre su vista detallada.</p>
+        </div>
+      </div>
+      <div class="proyectos-grid">
+        <button class="project-card" type="button" data-proyecto="lapi" aria-haspopup="dialog">
+          <span class="pc-media"><img src="proyectos/lapi/Apple_MacBook_Air_M1_Mockup_v03.jpeg" alt="Presentación del rediseño de identidad LAPI sobre computadora."></span>
+          <span class="pc-body">
+            <span class="pc-meta">Branding</span>
+            <span class="t-h3">LAPI y Coronel</span>
+            <span class="pc-desc">Rediseño de identidad para LAPI y desarrollo de la identidad de Coronel, vino de Baja California.</span>
+            <span class="pc-link">Ver caso →</span>
+          </span>
+        </button>
+
+        <button class="project-card" type="button" data-proyecto="feria" aria-haspopup="dialog">
+          <span class="pc-media"><img src="proyectos/feria/Screenshot%202026-08-17%20at%208.19.14%E2%80%AFp.m..png" alt="Identidad e ilustración para la Feria del Libro de Aguascalientes."></span>
+          <span class="pc-body">
+            <span class="pc-meta">Ilustración</span>
+            <span class="t-h3">Feria del Libro</span>
+            <span class="pc-desc">Identidad e ilustración para la Feria del Libro de Aguascalientes.</span>
+            <span class="pc-link">Ver caso →</span>
+          </span>
+        </button>
+
+        <button class="project-card" type="button" data-proyecto="foto" aria-haspopup="dialog">
+          <span class="pc-media"><img src="proyectos/foto/IMG_0318_1.jpg" alt="Fotografía editorial y de producto de Gabriela Martínez Vega."></span>
+          <span class="pc-body">
+            <span class="pc-meta">Fotografía</span>
+            <span class="t-h3">Editorial y producto</span>
+            <span class="pc-desc">Fotografía editorial y de producto con encuadres cuidados.</span>
+            <span class="pc-link">Ver caso →</span>
+          </span>
+        </button>
+
+        <button class="project-card" type="button" data-proyecto="modelado" aria-haspopup="dialog">
+          <span class="pc-media"><img src="proyectos/modelado/playspace_1_30.png" alt="Maquetación de stand 3D para Playmobil."></span>
+          <span class="pc-body">
+            <span class="pc-meta">Modelado 3D · Motion</span>
+            <span class="t-h3">Playmobil y personaje</span>
+            <span class="pc-desc">Maquetación de stand 3D para Playmobil, personaje y loops de movimiento.</span>
+            <span class="pc-link">Ver caso →</span>
+          </span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACTO ============ -->
+  <section id="contacto" class="contacto-band" aria-labelledby="contacto-title">
+    <div class="contacto-inner">
+      <div>
+        <h2 id="contacto-title">¿Creamos algo con identidad?</h2>
+        <div class="contacto-cta">
+          <a class="btn btn-primary" href="mailto:gaby.vegart@gmail.com">Escríbeme</a>
+          <a class="btn btn-secondary" href="tel:+525574237525">Llámalo</a>
+        </div>
+      </div>
+      <ul class="contacto-list">
+        <li class="contacto-item">
+          <span class="c-label">Correo</span>
+          <a href="mailto:gaby.vegart@gmail.com">gaby.vegart@gmail.com</a>
+        </li>
+        <li class="contacto-item">
+          <span class="c-label">Teléfono</span>
+          <a href="tel:+525574237525">+52 (55) 7423 7525</a>
+        </li>
+        <li class="contacto-item">
+          <span class="c-label">Instagram</span>
+          <a href="https://www.instagram.com/_gaby.mtzvega_" target="_blank" rel="noopener">_gaby.mtzvega_</a>
+        </li>
+        <li class="contacto-item">
+          <span class="c-label">TikTok</span>
+          <a href="https://www.tiktok.com/@_gaby.mtzvega_" target="_blank" rel="noopener">_gaby.mtzvega_</a>
+        </li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">
+        <img src="logo/mono_rojo.png" alt="">
+        <div>
+          <p class="fb-name">Gabriela Martínez Vega</p>
+          <p class="fb-role">Branding · Motion Graphics · Ilustración</p>
+        </div>
+      </div>
+      <ul class="footer-contact" style="margin-top:var(--space-sm);">
+        <li><a href="mailto:gaby.vegart@gmail.com">Correo</a></li>
+        <li><a href="https://www.instagram.com/_gaby.mtzvega_" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="https://www.tiktok.com/@_gaby.mtzvega_" target="_blank" rel="noopener">TikTok</a></li>
+      </ul>
+    </div>
+    <p class="footer-phrase">Identidad que toma forma y movimiento.</p>
+  </div>
+</footer>
+
+<!-- ============ MODAL DE PROYECTO ============ -->
+<dialog id="proyecto-dialog" aria-labelledby="proyecto-titulo">
+  <div class="modal-scroll">
+    <div class="modal-hero">
+      <img id="proyecto-portada" src="" alt="">
+      <button class="modal-close" type="button" data-modal-close aria-label="Cerrar detalle del proyecto">✕</button>
+    </div>
+    <div class="modal-body">
+      <p class="modal-meta" id="proyecto-meta"></p>
+      <h3 id="proyecto-titulo"></h3>
+      <div class="modal-block"><h4>Contexto</h4><p data-campo="contexto"></p></div>
+      <div class="modal-block"><h4>Problema</h4><p data-campo="problema"></p></div>
+      <div class="modal-block"><h4>Concepto</h4><p data-campo="concepto"></p></div>
+      <div class="modal-block"><h4>Proceso</h4><p data-campo="proceso"></p></div>
+      <div class="modal-block"><h4>Decisiones visuales</h4><p data-campo="decisiones"></p></div>
+      <div class="modal-block"><h4>Aplicaciones</h4><p data-campo="aplicaciones"></p></div>
+      <div class="modal-block"><h4>Resultado</h4><p data-campo="resultado"></p></div>
+      <div id="proyecto-galeria" class="modal-gallery" aria-label="Galería del proyecto"></div>
+    </div>
+  </div>
+</dialog>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ============ VISTA NOCTURNA / DE DÍA ============ */
+  var rootEl = document.documentElement;
+  var savedTheme = null;
+  try { savedTheme = localStorage.getItem('cv-theme'); } catch (e) { /* noop */ }
+  var sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  var currentTheme = (savedTheme === 'dark' || savedTheme === 'light')
+    ? savedTheme
+    : (sysDark ? 'dark' : 'light');
+
+  var applyTheme = function (t) {
+    rootEl.setAttribute('data-theme', t);
+    try { localStorage.setItem('cv-theme', t); } catch (e) { /* noop */ }
+    var btn = document.querySelector('[data-theme-toggle]');
+    if (btn) {
+      btn.setAttribute('aria-pressed', t === 'dark' ? 'true' : 'false');
+    }
+  };
+  applyTheme(currentTheme);
+  var toggleBtn = document.querySelector('[data-theme-toggle]');
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', function () {
+      applyTheme(rootEl.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+    });
+  }
+
+  /* ============ MENÚ HAMBURGUESA ============ */
+  var navToggle = document.querySelector('[data-nav-toggle]');
+  var mainNav = document.getElementById('menu-principal');
+  if (navToggle && mainNav) {
+    navToggle.addEventListener('click', function () {
+      var open = mainNav.classList.toggle('is-open');
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      navToggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+    });
+    mainNav.addEventListener('click', function (e) {
+      if (e.target.tagName === 'A') {
+        mainNav.classList.remove('is-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  /* ============ SCROLLSPY ============ */
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.main-nav a[href^="#"]'));
+  var sections = navLinks.map(function (a) {
+    var sec = document.querySelector(a.getAttribute('href'));
+    return sec;
+  }).filter(Boolean);
+
+  var spy = function () {
+    var pos = window.scrollY + 140;
+    var current = navLinks[0];
+    sections.forEach(function (sec, i) {
+      if (sec && sec.offsetTop <= pos) { current = navLinks[i]; }
+    });
+    var bottom = window.scrollY + window.innerHeight >= document.body.scrollHeight - 8;
+    if (bottom) { current = navLinks[navLinks.length - 1]; }
+    navLinks.forEach(function (a) {
+      var on = a === current;
+      a.classList.toggle('is-active', on);
+      if (on) { a.setAttribute('aria-current', 'true'); } else { a.removeAttribute('aria-current'); }
+    });
+  };
+  var ticking = false;
+  window.addEventListener('scroll', function () {
+    if (!ticking) {
+      window.requestAnimationFrame(function () { spy(); ticking = false; });
+      ticking = true;
+    }
+  });
+  window.addEventListener('resize', spy);
+  spy();
+
+  /* ============ MODAL DE PROYECTOS ============ */
+  var PROYECTOS = {
+    lapi: {
+      categoria: 'Branding · Identidad visual',
+      titulo: 'LAPI y Coronel',
+      portada: 'proyectos/lapi/Apple_MacBook_Air_M1_Mockup_v03.jpeg',
+      contexto: 'LAPI es un proyecto de identidad que necesitaba renovar su imagen; Coronel es un vino de Baja California que partía de cero en identidad de marca.',
+      problema: 'Comunicar valores de origen y calidad con una identidad que se sintiera contemporánea pero con raíz editorial, y que funcionara en empaque, digital y piezas de comunicación.',
+      concepto: 'Sistemas visuales con base tipográfica y cromática de la marca: Winery Red como voz protagonista y estructura editorial clara.',
+      proceso: 'Investigación de la categoría, propuestas de concepto, desarrollo de logotipo y sistema gráfico, y aplicaciones en mockups.',
+      decisiones: 'Tipografía de identidad en titulares, paleta contenida de la marca y composición editorial en cada aplicación.',
+      aplicaciones: 'Imagen corporativa, empaque, presentaciones y piezas de comunicación digital.',
+      resultado: 'Una identidad con carácter, coherente y aplicable a distintos medios.',
+      galeria: [
+        { src: 'proyectos/lapi/Screenshot%202026-08-17%20at%208.19.40%E2%80%AFp.m..png', alt: 'Aplicación de la identidad LAPI.' },
+        { src: 'proyectos/lapi/Screenshot%202026-08-17%20at%208.19.57%E2%80%AFp.m..png', alt: 'Pieza del sistema gráfico LAPI.' },
+        { src: 'proyectos/lapi/Screenshot%202026-08-17%20at%208.20.09%E2%80%AFp.m..png', alt: 'Variaciones de la identidad LAPI.' }
+      ]
+    },
+    feria: {
+      categoria: 'Ilustración · Identidad',
+      titulo: 'Feria del Libro de Aguascalientes',
+      portada: 'proyectos/feria/Screenshot%202026-08-17%20at%208.19.14%E2%80%AFp.m..png',
+      contexto: 'Identidad e ilustración para la Feria del Libro de Aguascalientes, con una edición especial de Dr Pepper de temática deportiva.',
+      problema: 'Contar con un lenguaje ilustrado propio que funcionara en cartelería, editorial y redes, distinguiendo cada edición.',
+      concepto: 'Ilustración con personalidad ligada al programa visual de cada edición, manteniendo un hilo de identidad.',
+      proceso: 'Definición del concepto, exploración de estilo ilustrado, desarrollo de piezas y ajuste a los distintos soportes.',
+      decisiones: 'Tratamiento ilustrado coherente con la paleta y composiciones editoriales de gran escala.',
+      aplicaciones: 'Carteles, convocatorias, empaques de edición especial y contenido para redes.',
+      resultado: 'Una serie visual reconocible que conecta ilustración e identidad.',
+      galeria: [
+        { src: 'proyectos/feria/Screenshot%202026-08-17%20at%208.19.30%E2%80%AFp.m..png', alt: 'Pieza ilustrada de la Feria del Libro.' },
+        { src: 'proyectos/pepper/LATA%20COCO.jpg', alt: 'Edición especial de Dr Pepper, sabor coco.' },
+        { src: 'proyectos/pepper/LATA%20FRESA.jpg', alt: 'Edición especial de Dr Pepper, sabor fresa.' },
+        { src: 'proyectos/pepper/LATA%20MORAS.jpg', alt: 'Edición especial de Dr Pepper, sabor moras.' }
+      ]
+    },
+    foto: {
+      categoria: 'Fotografía · Editorial y producto',
+      titulo: 'Editorial y producto',
+      portada: 'proyectos/foto/IMG_0318_1.jpg',
+      contexto: 'Serie de fotografía editorial y de producto para mostrar la mirada visual aplicada a retratos, artes finales y piezas de gastronomía.',
+      problema: 'Lograr encuadres y tratamiento de color con carácter editorial manteniendo la apariencia real del material.',
+      concepto: 'Luz, composición y encuadre editorial como base de la fotografía.',
+      proceso: 'Producción de la sesión, dirección de encuadre y tratamiento coherente con la paleta.',
+      decisiones: 'Fotografía a color y en blanco y negro, con encuadres editoriales y acentos de la paleta.',
+      aplicaciones: 'Retrato, producto y artes para menús y piezas editoriales.',
+      resultado: 'Imágenes con presencia y coherencia visual para distintos proyectos.',
+      galeria: [
+        { src: 'proyectos/foto/FOTO%20CATRINA%20FINAL.png', alt: 'Fotografía editorial de personaje.' },
+        { src: 'proyectos/foto/Mock%20Up%20menu%CC%81_GMMV.png', alt: 'Aplicación fotográfica en mockup de menú.' }
+      ]
+    },
+    modelado: {
+      categoria: 'Modelado 3D · Motion Graphics',
+      titulo: 'Playmobil y personaje',
+      portada: 'proyectos/modelado/playspace_1_30.png',
+      contexto: 'Maquetación de un stand 3D para Playmobil y desarrollo de un personaje animado, con loops de movimiento.',
+      problema: 'Comunicar espacio, escala y producto en 3D, y dar movimiento al personaje para piezas de Motion Graphics.',
+      concepto: 'Construcción 3D del espacio y del personaje como extensión de una narrativa visual animada.',
+      proceso: 'Modelado del stand y del personaje, texturizado, iluminación y animación de vueltas completas.',
+      decisiones: 'Paleta y materialidad de la marca en el stand; animación fluida del personaje en loop.',
+      aplicaciones: 'Presentaciones, videos de producto y piezas para Motion Graphics.',
+      resultado: 'Modelos 3D y loops animados listos para comunicación digital.',
+      galeria: [
+        { src: 'proyectos/modelado/playspace_1_44.png', alt: 'Vista adicional del stand 3D de Playmobil.' },
+        { src: 'proyectos/modelado/personaje%20sin%20fondo.png', alt: 'Personaje 3D renderizado sin fondo.' },
+        { src: 'proyectos/modelado/Personaje_GabrielaMartinez_1_0001%202.png', alt: 'Render del personaje 3D.' }
+      ],
+      video: { src: 'proyectos/modelado/turntable_casco.mp4', alt: 'Loop de movimiento del personaje 3D.' }
+    }
+  };
+
+  var dialog = document.getElementById('proyecto-dialog');
+  var portada = document.getElementById('proyecto-portada');
+  var meta = document.getElementById('proyecto-meta');
+  var titulo = document.getElementById('proyecto-titulo');
+  var galeria = document.getElementById('proyecto-galeria');
+
+  var abrir = function (key) {
+    var p = PROYECTOS[key];
+    if (!p) { return; }
+    portada.src = p.portada;
+    portada.alt = p.titulo;
+    meta.textContent = p.categoria;
+    titulo.textContent = p.titulo;
+    ['contexto', 'problema', 'concepto', 'proceso', 'decisiones', 'aplicaciones', 'resultado'].forEach(function (campo) {
+      var el = dialog.querySelector('[data-campo="' + campo + '"]');
+      if (el) { el.textContent = p[campo]; }
+    });
+    galeria.innerHTML = '';
+    p.galeria.forEach(function (g) {
+      var img = document.createElement('img');
+      img.src = g.src;
+      img.alt = g.alt;
+      img.loading = 'lazy';
+      galeria.appendChild(img);
+    });
+    if (p.video) {
+      var video = document.createElement('video');
+      video.src = p.video.src;
+      video.controls = true;
+      video.muted = true;
+      video.loop = true;
+      video.playsInline = true;
+      video.setAttribute('aria-label', p.video.alt);
+      galeria.appendChild(video);
+    }
+    if (typeof dialog.showModal === 'function') {
+      dialog.showModal();
+    } else {
+      dialog.setAttribute('open', '');
+    }
+  };
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-proyecto]'), function (card) {
+    card.addEventListener('click', function () {
+      abrir(card.getAttribute('data-proyecto'));
+    });
+  });
+
+  var cerrar = function () {
+    if (typeof dialog.close === 'function') { dialog.close(); }
+    else { dialog.removeAttribute('open'); }
+  };
+
+  var closeBtn = dialog.querySelector('[data-modal-close]');
+  if (closeBtn) { closeBtn.addEventListener('click', cerrar); }
+  dialog.addEventListener('click', function (e) {
+    if (e.target === dialog) { cerrar(); }
+  });
+})();
+</script>
+</body>
+</html>
