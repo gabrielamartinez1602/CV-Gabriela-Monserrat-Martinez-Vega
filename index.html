@@ -793,7 +793,12 @@ ul { padding: 0; list-style: none; }
   pointer-events: none;
   z-index: 0;
 }
-[data-theme="dark"] #especialidades::after { background-image: url('img/conejo_blanco.png'); opacity: 0.12; }
+[data-theme="dark"] #especialidades::after {
+  background-image: url('img/conejo%20fondo%20oscuro.png');
+  opacity: 0.12;
+  background-position: calc(100% - var(--space-md)) 50%;
+  background-size: min(32%, 400px) auto;
+}
 @media (min-width: 600px) {
   #especialidades::after { background-size: auto 78%; }
 }
