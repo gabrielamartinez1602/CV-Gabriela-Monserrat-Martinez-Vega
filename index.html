@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gabriela Martínez Vega · Diseño Gráfico e Ilustración</title>
-<meta name="description" content="CV y portafolio de Gabriela Martínez Vega, diseñadora gráfica en Branding, Motion Graphics e Ilustración. Identidades con carácter, del concepto al movimiento.">
+<meta name="description" content="CV y portafolio de Gabriela Martínez Vega, diseñadora gráfica en Branding, Producción e Ilustración. Identidades con carácter, del concepto al movimiento.">
 <meta name="theme-color" content="#83232D">
 <style>
 /* ============================================================
@@ -557,7 +557,105 @@ ul { padding: 0; list-style: none; }
 .section {
   padding-top: var(--space-2xl);
   padding-bottom: var(--space-2xl);
-  border-bottom: var(--border-thin);
+}
+/* divisores animados entre secciones — Art Deco */
+.section-divider {
+  --sd-inset: var(--space-margin-mobile);
+  position: relative;
+  height: 24px;
+}
+.sd-line,
+.sd-med,
+.sd-med--2,
+.sd-med--3,
+.sd-accent,
+.sd-diamond {
+  position: absolute;
+}
+.sd-line {
+  left: calc(var(--sd-inset) + 26px);
+  right: var(--sd-inset);
+  top: calc(50% - 3.5px);
+  height: 1px;
+  background: var(--color-secondary);
+  transform-origin: left center;
+  animation: sd-draw 1s ease-out backwards, sd-show 1s ease-out backwards;
+}
+.sd-line::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 6px;
+  height: 1px;
+  background: var(--color-primary);
+}
+.sd-diamond {
+  left: var(--sd-inset);
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  margin-top: -6px;
+  background: var(--color-primary);
+  transform: rotate(45deg);
+  animation: sd-pop 0.4s ease-out 1.75s backwards;
+}
+.sd-diamond::before {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  border: 1.5px solid var(--color-primary);
+}
+.sd-accent {
+  left: calc(var(--sd-inset) + 26px);
+  width: clamp(36px, 5vw, 64px);
+  top: calc(50% - 3px);
+  height: 6px;
+  background: var(--color-primary);
+  transform-origin: left center;
+  animation: sd-draw 0.4s ease-out 1.35s backwards, sd-show 0.4s ease-out 1.35s backwards;
+}
+.sd-med {
+  left: calc(var(--sd-inset) + 26px);
+  width: clamp(110px, 13vw, 170px);
+  top: calc(50% - 1px);
+  height: 2px;
+  background: var(--color-secondary);
+  transform-origin: left center;
+  animation: sd-draw 0.45s ease-out 0.9s backwards, sd-show 0.45s ease-out 0.9s backwards;
+}
+.sd-med--2 {
+  width: clamp(84px, 10vw, 132px);
+  height: 3px;
+  top: calc(50% - 1.5px);
+  background: var(--color-on-surface);
+  animation-delay: 1.05s, 1.05s;
+}
+.sd-med--3 {
+  width: clamp(58px, 7vw, 96px);
+  height: 4px;
+  top: calc(50% - 2px);
+  background: var(--color-primary);
+  animation-delay: 1.2s, 1.2s;
+}
+[data-theme="dark"] .sd-line,
+[data-theme="dark"] .sd-med { background: var(--color-secondary-soft); }
+@keyframes sd-draw {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+@keyframes sd-show {
+  from { opacity: 0; }
+}
+@keyframes sd-pop {
+  from { opacity: 0; transform: rotate(45deg) scale(0); }
+  to { opacity: 1; transform: rotate(45deg) scale(1); }
+}
+@media (min-width: 600px) {
+  .section-divider { --sd-inset: var(--space-margin-tablet); }
+}
+@media (min-width: 1180px) {
+  .section-divider { --sd-inset: var(--space-margin-desktop); }
 }
 .section-head {
   display: grid;
@@ -679,15 +777,60 @@ ul { padding: 0; list-style: none; }
 /* ============================================================
    ESPECIALIDADES
    ============================================================ */
+#especialidades.section {
+  position: relative;
+  overflow: hidden;
+}
+#especialidades::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('img/conejo_rojo.png');
+  background-size: min(40%, 380px) auto;
+  background-repeat: no-repeat;
+  background-position: 100% 50%;
+  opacity: 0.14;
+  pointer-events: none;
+  z-index: 0;
+}
+[data-theme="dark"] #especialidades::after { background-image: url('img/conejo_blanco.png'); opacity: 0.12; }
+@media (min-width: 600px) {
+  #especialidades::after { background-size: auto 78%; }
+}
+#especialidades .container {
+  position: relative;
+  z-index: 1;
+}
+#especialidades .esp-head {
+  grid-template-columns: 1fr;
+  gap: var(--space-sm);
+  align-items: start;
+  margin-bottom: var(--space-sm);
+}
+.esp-head .t-h2 {
+  font-size: clamp(40px, 7vw, 56px);
+}
+.esp-head .section-intro {
+  font-size: 18px;
+  margin-top: var(--space-xs);
+}
+.esp-head .hero-word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.5em) scale(0.96);
+  animation: word-cycle 6.5s ease-in-out infinite;
+  animation-delay: 0s;
+}
 .especialidades-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-md);
+  max-width: 940px;
 }
 .especialidad-card {
-  border: var(--border-thin);
-  border-top: 3px solid var(--color-secondary);
-  background: var(--color-surface);
+  border: none;
+  background: var(--color-secondary);
+  color: var(--color-on-secondary);
   padding: var(--space-md);
   transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
@@ -699,36 +842,126 @@ ul { padding: 0; list-style: none; }
   font-family: var(--font-display);
   font-size: 36px;
   line-height: 1;
-  color: var(--color-primary);
+  color: var(--color-on-secondary);
   margin-bottom: var(--space-sm);
 }
-.especialidad-card h3 { margin-bottom: var(--space-xs); }
-.especialidad-card p { font-size: 15px; color: var(--color-on-surface); }
+.especialidad-card h3 { color: var(--color-on-secondary); margin-bottom: var(--space-xs); }
+.especialidad-card p { font-size: 15px; color: var(--color-on-secondary); text-wrap: pretty; }
+[data-theme="dark"] .especialidad-card,
+[data-theme="dark"] .especialidad-card h3,
+[data-theme="dark"] .especialidad-card p { color: var(--color-on-primary); }
+[data-theme="dark"] .especialidad-card { background: var(--color-primary); }
+[data-theme="dark"] .especialidad-card .card-num { color: var(--color-on-primary); }
 
 /* ============================================================
    EXPERIENCIA / EDUCACIÓN
    ============================================================ */
 .experiencia-list {
   display: grid;
-  gap: var(--space-sm);
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
 }
 .experiencia-item {
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-xs);
-  border: var(--border-thin);
-  padding: var(--space-sm);
 }
 .experiencia-item .exp-rol {
   font-size: 16px;
   font-weight: 500;
   line-height: 1.4;
+  color: var(--color-primary);
 }
+[data-theme="dark"] .experiencia-item .exp-rol { color: var(--color-secondary-soft); }
 .experiencia-item .exp-lugar {
   font-size: 14px;
   color: var(--color-secondary);
   line-height: 1.5;
 }
+[data-theme="dark"] .experiencia-item .exp-lugar { color: var(--color-secondary-soft); }
+#experiencia.section {
+  padding-top: var(--space-xl);
+}
+#experiencia .exp-head {
+  grid-template-columns: 1fr;
+  gap: var(--space-xs);
+  align-items: start;
+  margin-bottom: var(--space-sm);
+  text-align: right;
+}
+#experiencia .exp-head .t-h2 {
+  margin-top: 0;
+  line-height: 1.05;
+  font-size: clamp(40px, 7vw, 56px);
+}
+#experiencia .exp-head .section-intro {
+  font-size: 18px;
+  margin-top: var(--space-xs);
+  margin-left: auto;
+}
+#experiencia .t-h2 .hero-word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.5em) scale(0.96);
+  animation: word-cycle 6.5s ease-in-out infinite;
+  animation-delay: 0s;
+}
+#educacion .edu-head,
+#habilidades .hab-head {
+  grid-template-columns: 1fr;
+  gap: var(--space-sm);
+  align-items: start;
+  margin-bottom: var(--space-sm);
+  text-align: center;
+}
+#educacion .edu-head .t-h2,
+#habilidades .hab-head .t-h2 {
+  font-size: clamp(40px, 7vw, 56px);
+}
+#educacion .edu-head .section-intro,
+#habilidades .hab-head .section-intro {
+  font-size: 18px;
+  margin-top: var(--space-xs);
+  margin-left: auto;
+  margin-right: auto;
+}
+#educacion .edu-head .hero-word,
+#habilidades .hab-head .hero-word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.5em) scale(0.96);
+  animation: word-cycle 6.5s ease-in-out infinite;
+}
+#educacion .edu-head .hero-word:nth-child(1),
+#habilidades .hab-head .hero-word:nth-child(1) { animation-delay: 0s; }
+#educacion .edu-head .hero-word:nth-child(2),
+#habilidades .hab-head .hero-word:nth-child(2) { animation-delay: 0.7s; }
+#educacion .edu-head .hero-word:nth-child(3),
+#habilidades .hab-head .hero-word:nth-child(3) { animation-delay: 1.4s; }
+#proyectos .proy-head {
+  grid-template-columns: 1fr;
+  gap: var(--space-sm);
+  align-items: start;
+  margin-bottom: var(--space-sm);
+  text-align: center;
+}
+#proyectos .proy-head .t-h2 {
+  font-size: clamp(40px, 7vw, 56px);
+}
+#proyectos .proy-head .section-intro {
+  font-size: 18px;
+  margin-top: var(--space-xs);
+  margin-left: auto;
+  margin-right: auto;
+}
+#proyectos .proy-head .hero-word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.5em) scale(0.96);
+  animation: word-cycle 6.5s ease-in-out infinite;
+}
+#proyectos .proy-head .hero-word:nth-child(1) { animation-delay: 0s; }
+#proyectos .proy-head .hero-word:nth-child(2) { animation-delay: 0.7s; }
 
 .educacion-list { display: grid; gap: var(--space-sm); }
 .educacion-item {
@@ -740,8 +973,10 @@ ul { padding: 0; list-style: none; }
   align-items: baseline;
   justify-content: space-between;
 }
-.educacion-item .edu-main { font-size: 16px; font-weight: 500; line-height: 1.4; }
+.educacion-item .edu-main { font-size: 18px; font-weight: 600; line-height: 1.35; color: var(--color-primary); }
+[data-theme="dark"] .educacion-item .edu-main { color: var(--color-primary-soft); }
 .educacion-item .edu-sub { font-size: 13px; color: var(--color-secondary); }
+[data-theme="dark"] .educacion-item .edu-sub { color: var(--color-secondary-soft); }
 .tags { display: flex; flex-wrap: wrap; gap: var(--space-xs); margin-top: var(--space-xs); }
 .tag {
   font-size: 12px;
@@ -763,13 +998,23 @@ ul { padding: 0; list-style: none; }
   gap: var(--space-lg);
 }
 .habilidades-col h3 {
-  font-size: 14px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--color-secondary);
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: var(--color-primary);
   margin-bottom: var(--space-sm);
 }
+.habilidades-col h3::after {
+  content: "";
+  display: block;
+  width: 44px;
+  height: 3px;
+  margin-top: var(--space-xs);
+  background: var(--color-primary);
+}
+[data-theme="dark"] .habilidades-col h3 { color: var(--color-primary-soft); }
+[data-theme="dark"] .habilidades-col h3::after { background: var(--color-primary-soft); }
 .skill-list { display: grid; gap: var(--space-xs); }
 .skill-item {
   display: flex;
@@ -810,47 +1055,32 @@ ul { padding: 0; list-style: none; }
   transform: translateY(-3px);
 }
 .project-card .pc-media {
-  background: var(--color-surface);
   height: 220px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  background: var(--color-secondary);
 }
-.project-card .pc-media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.35s ease;
-}
-.project-card:hover .pc-media img { transform: scale(1.03); }
-.project-card .pc-body { padding: var(--space-sm); }
-.project-card .pc-meta {
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--color-secondary);
-  margin-bottom: var(--space-xs);
-}
-.project-card h3 { margin-bottom: var(--space-xs); }
-.project-card .pc-desc { font-size: 14px; line-height: 1.5; color: var(--color-secondary); }
-.project-card .pc-link {
-  display: inline-block;
-  margin-top: var(--space-xs);
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--color-primary);
+.project-card .pc-media.pc-red { background: var(--color-primary); }
+.project-card .pc-area {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.2vw, 42px);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--color-on-primary);
+  text-align: center;
+  text-wrap: balance;
+  padding: 0 var(--space-xs);
 }
 
 /* ============================================================
    CONTACTO
    ============================================================ */
 .contacto-band {
-  background: var(--color-secondary);
-  color: var(--color-on-secondary);
-  padding: var(--space-2xl) var(--space-margin-mobile);
+  background: var(--color-neutral);
+  color: var(--color-on-neutral);
+  padding: var(--space-md) var(--space-margin-mobile);
 }
 .contacto-inner {
   max-width: var(--space-max-width);
@@ -859,11 +1089,55 @@ ul { padding: 0; list-style: none; }
   grid-template-columns: 1fr;
   gap: var(--space-lg);
 }
+.contacto-main {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+}
+.contacto-mono {
+  width: clamp(150px, 19vw, 230px);
+  height: auto;
+  object-fit: contain;
+  display: block;
+  flex-shrink: 0;
+}
+.contacto-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-xs);
+}
+.contacto-info .fb-name {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3vw, 36px);
+  line-height: 1.05;
+  margin: 0;
+}
+.contacto-info .fb-role {
+  font-size: 11px;
+  opacity: 0.75;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin: 0;
+}
+.contacto-main h2 {
+  max-width: none;
+  margin-top: var(--space-xs);
+}
+.contacto-band .footer-phrase {
+  font-size: clamp(18px, 2vw, 22px);
+  opacity: 0.9;
+  margin: var(--space-xs) 0 0;
+  text-align: left;
+}
+@media (max-width: 599px) {
+  .contacto-main { flex-direction: column; gap: var(--space-md); }
+}
 .contacto-inner h2 {
   font-family: var(--font-display);
-  font-size: clamp(32px, 8vw, 48px);
+  font-size: clamp(24px, 5vw, 34px);
   font-weight: 400;
-  line-height: 1;
+  line-height: 1.05;
   letter-spacing: -0.01em;
   max-width: 16ch;
 }
@@ -884,11 +1158,11 @@ ul { padding: 0; list-style: none; }
 .contacto-item a, .contacto-item span {
   font-size: 16px;
   font-weight: 500;
-  color: var(--color-on-secondary);
+  color: var(--color-on-neutral);
   text-decoration: none;
   word-break: break-word;
 }
-.contacto-item a:hover { text-decoration: underline; color: var(--color-on-secondary); }
+.contacto-item a:hover { text-decoration: underline; color: var(--color-primary-soft); }
 .contacto-cta {
   display: flex;
   flex-wrap: wrap;
@@ -902,8 +1176,7 @@ ul { padding: 0; list-style: none; }
 .site-footer {
   background: var(--color-neutral);
   color: var(--color-on-neutral);
-  border-top: 3px solid var(--color-secondary);
-  padding: var(--space-2xl) var(--space-margin-mobile);
+  padding: var(--space-md) var(--space-margin-mobile);
 }
 .footer-inner {
   max-width: var(--space-max-width);
@@ -941,14 +1214,51 @@ dialog {
   padding: 0;
   width: min(92vw, 880px);
   max-height: 90vh;
+  overflow: hidden;
+  transform: translateZ(0);
 }
 dialog::backdrop { background: rgba(0, 0, 0, 0.72); }
+dialog[open] { animation: modal-open 0.32s cubic-bezier(0.22, 0.9, 0.35, 1); }
+.mf {
+  position: absolute;
+  pointer-events: none;
+  z-index: 2;
+}
+.mf-outer {
+  inset: 10px;
+  border: 1px solid var(--color-secondary-soft);
+}
+.mf-inner {
+  inset: 15px;
+  border: 1px solid var(--color-primary);
+  opacity: 0.55;
+}
+dialog[open] .mf-outer { animation: mf-in 0.45s ease-out 0.12s backwards; }
+dialog[open] .mf-inner { animation: mf-in 0.45s ease-out 0.2s backwards; }
+@keyframes modal-open {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes mf-in {
+  from { opacity: 0; transform: scale(1.04); }
+  to { opacity: 1; transform: scale(1); }
+}
 .modal-scroll { overflow-y: auto; max-height: 90vh; }
 .modal-hero { position: relative; }
-.modal-hero img {
-  width: 100%;
-  max-height: 420px;
-  object-fit: cover;
+.modal-banner {
+  height: 190px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-secondary);
+}
+.modal-banner.mb-red { background: var(--color-primary); }
+.modal-banner span {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 4vw, 46px);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--color-on-primary);
 }
 .modal-close {
   position: absolute;
@@ -967,6 +1277,51 @@ dialog::backdrop { background: rgba(0, 0, 0, 0.72); }
 }
 .modal-close:hover { background: var(--color-primary); border-color: var(--color-primary); }
 .modal-body { padding: var(--space-md); }
+.modal-cols { display: grid; grid-template-columns: 1fr; gap: var(--space-md); align-items: center; }
+.modal-cols.sin-logo { grid-template-columns: 1fr; }
+.modal-intro { font-size: 15px; line-height: 1.65; max-width: 660px; margin: 0 auto var(--space-sm); text-align: center; text-wrap: balance; }
+.modal-logo-cap { margin-top: 8px; font-size: 13px; line-height: 1.5; text-align: center; }
+.modal-gallery .mg-cap {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  border: var(--border-thin);
+  background: var(--color-surface-alt);
+}
+.modal-gallery .mg-cap img { height: 190px; border: none; background: transparent; }
+.modal-gallery .mg-cap figcaption {
+  padding: 10px 12px 12px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  border-top: var(--border-thin);
+}
+.modal-gallery .mg-cap figcaption strong {
+  display: block;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+  margin-bottom: 3px;
+}
+.modal-extra { margin-top: var(--space-lg); padding-top: var(--space-md); border-top: var(--border-thin); }
+.modal-logo { margin: 0; padding: var(--space-sm); background: var(--color-surface-alt); display: flex; align-items: center; justify-content: center; }
+.modal-logo img { width: 100%; max-height: 320px; object-fit: contain; }
+.modal-logo.tall {
+  align-self: stretch;
+  padding: 0;
+  background: transparent;
+}
+.modal-logo.tall img {
+  width: 100%;
+  height: min(72vh, 560px);
+  max-height: none;
+  object-fit: cover;
+  object-position: center top;
+}
+@media (min-width: 600px) {
+  .modal-logo.tall img { height: 100%; min-height: 420px; }
+}
 .modal-meta {
   font-size: 12px;
   letter-spacing: 0.12em;
@@ -994,27 +1349,102 @@ dialog::backdrop { background: rgba(0, 0, 0, 0.72); }
 .modal-block p { font-size: 15px; line-height: 1.6; }
 .modal-gallery {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  align-items: stretch;
   gap: var(--space-xs);
   margin-top: var(--space-sm);
 }
 .modal-gallery img, .modal-gallery video {
   width: 100%;
-  max-height: 320px;
-  object-fit: cover;
+  height: 220px;
+  object-fit: contain;
   border: var(--border-thin);
+  background: var(--color-surface-alt);
 }
+
+/* ============================================================
+   LIGHTBOX CARRUSEL
+   ============================================================ */
+.lightbox {
+  border: none;
+  padding: 0;
+  width: 100vw;
+  max-width: 100vw;
+  height: 100vh;
+  max-height: 100vh;
+  background: rgba(0, 0, 0, 0.93);
+}
+.lightbox::backdrop { background: rgba(0, 0, 0, 0.5); }
+.lb-stage {
+  margin: 0;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  padding: clamp(56px, 8vh, 96px) clamp(64px, 9vw, 120px);
+}
+.lb-stage img {
+  max-width: 100%;
+  max-height: min(76vh, 900px);
+  object-fit: contain;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.55);
+}
+.lb-stage figcaption {
+  color: #fff;
+  font-size: 13px;
+  line-height: 1.5;
+  text-align: center;
+  opacity: 0.85;
+}
+.lb-count {
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  opacity: 0.75;
+  margin: 0;
+}
+.lb-btn {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  background: rgba(0, 0, 0, 0.35);
+  color: #fff;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.lb-btn:hover { background: var(--color-primary); border-color: var(--color-primary); transform: scale(1.05); }
+.lb-close { top: 16px; right: 16px; }
+.lb-arrow { top: 50%; margin-top: -23px; }
+.lb-prev { left: 14px; }
+.lb-next { right: 14px; }
+.modal-gallery img, .modal-logo img, .mg-cap img { cursor: zoom-in; }
 
 /* ============================================================
    RESPONSIVE — 600px / 1180px / 1440px
    ============================================================ */
 @media (min-width: 600px) {
+  .modal-cols { grid-template-columns: 5fr 3fr; gap: var(--space-lg); }
   .container { padding-left: var(--space-margin-tablet); padding-right: var(--space-margin-tablet); }
   .especialidades-grid { grid-template-columns: repeat(3, 1fr); }
   .proyectos-grid { grid-template-columns: repeat(2, 1fr); }
   .sobre-grid { grid-template-columns: 6fr 5fr; }
   .habilidades-grid { grid-template-columns: 1fr 1fr; }
-  .experiencia-item { grid-template-columns: 1fr; }
+  .experiencia-list { grid-template-columns: 1fr 1fr; }
   .contacto-inner { grid-template-columns: 1fr 1fr; }
   .footer-inner { grid-template-columns: 1fr 1fr; }
 }
@@ -1023,13 +1453,14 @@ dialog::backdrop { background: rgba(0, 0, 0, 0.72); }
   .container { padding-left: var(--space-margin-desktop); padding-right: var(--space-margin-desktop); }
   .section { padding-top: var(--space-3xl); padding-bottom: var(--space-3xl); }
   .section-head { grid-template-columns: 1fr 3fr; gap: var(--space-lg); align-items: start; }
+  .experiencia-list { grid-template-columns: repeat(4, 1fr); }
   .section-num { font-size: 48px; }
   .hero { padding-top: var(--space-3xl); padding-bottom: var(--space-3xl); }
   .hero-inner { grid-template-columns: 7fr 5fr; }
   .hero-photo img { max-height: 560px; }
   .hero::after { background-size: 40%; background-position: right center; }
-  .contacto-band { padding: var(--space-3xl) var(--space-margin-desktop); }
-  .site-footer { padding: var(--space-3xl) var(--space-margin-desktop); }
+  .contacto-band { padding: var(--space-lg) var(--space-margin-desktop); }
+  .site-footer { padding: var(--space-lg) var(--space-margin-desktop); }
   .proyectos-grid { grid-template-columns: repeat(3, 1fr); }
   .modal-body { padding: var(--space-lg); }
 }
@@ -1090,7 +1521,7 @@ dialog::backdrop { background: rgba(0, 0, 0, 0.72); }
         <h1 id="hero-name" class="hero-name">
           <span class="hero-word">Gabriela</span> <em class="hero-word">Martínez</em> <span class="hero-word">Vega</span>
         </h1>
-        <p class="hero-role">Branding · Motion Graphics · Ilustración</p>
+        <p class="hero-role">Branding · Producción · Ilustración</p>
         <p class="hero-value">"Construyo identidades visuales con carácter y las llevo del concepto a la imagen, la ilustración y el movimiento."</p>
         <div class="hero-cta">
           <a class="btn btn-primary" href="#proyectos">Ver proyectos</a>
@@ -1127,7 +1558,7 @@ dialog::backdrop { background: rgba(0, 0, 0, 0.72); }
             <p class="section-intro t-body">Quién soy, en qué trabajo y de dónde viene mi formación.</p>
           </div>
           <div class="sobre-text">
-            <p>Soy <strong>Gabriela Martínez Vega</strong>, diseñadora gráfica enfocada en <strong>Branding, Motion Graphics e Ilustración</strong>. Mi trabajo parte de la construcción de conceptos y sistemas visuales capaces de adaptarse a distintos medios. Me interesa combinar identidad, tipografía, composición, narrativa visual e ilustración para desarrollar piezas con personalidad y coherencia.</p>
+            <p>Soy <strong>Gabriela Martínez Vega</strong>, diseñadora gráfica enfocada en <strong>Branding, Producción e Ilustración</strong>. Mi trabajo parte de la construcción de conceptos y sistemas visuales capaces de adaptarse a distintos medios. Me interesa combinar identidad, tipografía, composición, narrativa visual e ilustración para desarrollar piezas con personalidad y coherencia.</p>
             <p>Actualmente curso <strong>Diseño Gráfico Digital en la Universidad La Salle de México</strong>. Mi formación ha reforzado mi interés por la identidad visual, la metodología, la producción gráfica y la comunicación visual. Me describo profesionalmente como responsable, organizada y con facilidad para trabajar en equipo.</p>
           </div>
         </div>
@@ -1135,31 +1566,37 @@ dialog::backdrop { background: rgba(0, 0, 0, 0.72); }
     </div>
   </section>
 
+  <div class="section-divider" aria-hidden="true">
+    <span class="sd-diamond"></span>
+    <span class="sd-accent"></span>
+    <span class="sd-med"></span>
+    <span class="sd-med sd-med--2"></span>
+    <span class="sd-med sd-med--3"></span>
+    <span class="sd-line"></span>
+  </div>
+
   <!-- ============ ESPECIALIDADES ============ -->
   <section id="especialidades" class="section" aria-labelledby="esp-title">
     <div class="container">
-      <div class="section-head">
-        <p class="section-num">02</p>
-        <div>
-          <h2 id="esp-title" class="t-h2">Especialidades</h2>
-          <p class="section-intro t-body">Tres áreas principales, con el mismo peso en mi práctica.</p>
-        </div>
+      <div class="section-head esp-head">
+        <h2 id="esp-title" class="t-h2"><span class="hero-word">Especialidades</span></h2>
+        <p class="section-intro t-body">Tres áreas principales, con el mismo peso en mi práctica.</p>
       </div>
       <div class="especialidades-grid">
         <article class="especialidad-card">
           <p class="card-num">01</p>
           <h3 class="t-h3">Branding</h3>
-          <p>Desarrollo de conceptos, identidad visual, logotipos, sistemas gráficos, aplicaciones de marca y piezas de comunicación.</p>
+          <p>Desarrollo de conceptos, identidad visual, logotipos, sistemas gráficos, aplicaciones de marca y piezas de&nbsp;comunicación.</p>
         </article>
         <article class="especialidad-card">
           <p class="card-num">02</p>
           <h3 class="t-h3">Motion Graphics</h3>
-          <p>Animación de elementos gráficos, tipografía, composiciones y recursos visuales para contenidos digitales y comunicación de marca.</p>
+          <p>Animación de elementos gráficos, tipografía, composiciones y recursos visuales para contenidos digitales y comunicación de&nbsp;marca.</p>
         </article>
         <article class="especialidad-card">
           <p class="card-num">03</p>
           <h3 class="t-h3">Ilustración</h3>
-          <p>Ilustraciones aplicadas a identidad, publicidad, editorial, packaging y piezas conceptuales.</p>
+          <p>Ilustraciones aplicadas a identidad, publicidad, editorial, packaging y piezas&nbsp;conceptuales.</p>
         </article>
       </div>
     </div>
@@ -1168,12 +1605,9 @@ dialog::backdrop { background: rgba(0, 0, 0, 0.72); }
   <!-- ============ EXPERIENCIA ============ -->
   <section id="experiencia" class="section" aria-labelledby="exp-title">
     <div class="container">
-      <div class="section-head">
-        <p class="section-num">03</p>
-        <div>
-          <h2 id="exp-title" class="t-h2">Experiencia</h2>
-          <p class="section-intro t-body">Trayectoria en producción, identidad y comunicación visual.</p>
-        </div>
+      <div class="section-head exp-head">
+        <h2 id="exp-title" class="t-h2"><span class="hero-word">Experiencia</span></h2>
+        <p class="section-intro t-body">Trayectoria en producción, identidad y comunicación visual.</p>
       </div>
       <ul class="experiencia-list">
         <li class="experiencia-item">
@@ -1204,15 +1638,21 @@ dialog::backdrop { background: rgba(0, 0, 0, 0.72); }
     </div>
   </section>
 
+  <div class="section-divider" aria-hidden="true">
+    <span class="sd-diamond"></span>
+    <span class="sd-accent"></span>
+    <span class="sd-med"></span>
+    <span class="sd-med sd-med--2"></span>
+    <span class="sd-med sd-med--3"></span>
+    <span class="sd-line"></span>
+  </div>
+
   <!-- ============ EDUCACIÓN ============ -->
   <section id="educacion" class="section" aria-labelledby="edu-title">
     <div class="container">
-      <div class="section-head">
-        <p class="section-num">04</p>
-        <div>
-          <h2 id="edu-title" class="t-h2">Educación y reconocimientos</h2>
-          <p class="section-intro t-body">Formación académica y distinciones.</p>
-        </div>
+      <div class="section-head edu-head">
+        <h2 id="edu-title" class="t-h2"><span class="hero-word">Educación</span> <span class="hero-word">y</span> <span class="hero-word">reconocimientos</span></h2>
+        <p class="section-intro t-body">Formación académica y distinciones.</p>
       </div>
       <ul class="educacion-list">
         <li class="educacion-item">
@@ -1247,15 +1687,21 @@ dialog::backdrop { background: rgba(0, 0, 0, 0.72); }
     </div>
   </section>
 
+  <div class="section-divider" aria-hidden="true">
+    <span class="sd-diamond"></span>
+    <span class="sd-accent"></span>
+    <span class="sd-med"></span>
+    <span class="sd-med sd-med--2"></span>
+    <span class="sd-med sd-med--3"></span>
+    <span class="sd-line"></span>
+  </div>
+
   <!-- ============ HABILIDADES ============ -->
   <section id="habilidades" class="section" aria-labelledby="hab-title">
     <div class="container">
-      <div class="section-head">
-        <p class="section-num">05</p>
-        <div>
-          <h2 id="hab-title" class="t-h2">Habilidades y herramientas</h2>
-          <p class="section-intro t-body">Conocimientos de diseño y herramientas de producción.</p>
-        </div>
+      <div class="section-head hab-head">
+        <h2 id="hab-title" class="t-h2"><span class="hero-word">Habilidades</span> <span class="hero-word">y</span> <span class="hero-word">herramientas</span></h2>
+        <p class="section-intro t-body">Conocimientos de diseño y herramientas de producción.</p>
       </div>
       <div class="habilidades-grid">
         <div class="habilidades-col">
@@ -1289,55 +1735,37 @@ dialog::backdrop { background: rgba(0, 0, 0, 0.72); }
     </div>
   </section>
 
+  <div class="section-divider" aria-hidden="true">
+    <span class="sd-diamond"></span>
+    <span class="sd-accent"></span>
+    <span class="sd-med"></span>
+    <span class="sd-med sd-med--2"></span>
+    <span class="sd-med sd-med--3"></span>
+    <span class="sd-line"></span>
+  </div>
+
   <!-- ============ PROYECTOS ============ -->
   <section id="proyectos" class="section" aria-labelledby="proy-title">
     <div class="container">
-      <div class="section-head">
-        <p class="section-num">06</p>
-        <div>
-          <h2 id="proy-title" class="t-h2">Proyectos seleccionados</h2>
-          <p class="section-intro t-body">Una muestra de cómo pienso y resuelvo visualmente. Cada caso abre su vista detallada.</p>
-        </div>
+      <div class="section-head proy-head">
+        <h2 id="proy-title" class="t-h2"><span class="hero-word">Proyectos</span> <span class="hero-word">seleccionados</span></h2>
+        <p class="section-intro t-body">Una muestra de cómo pienso y resuelvo visualmente. Cada caso abre su vista detallada.</p>
       </div>
       <div class="proyectos-grid">
         <button class="project-card" type="button" data-proyecto="lapi" aria-haspopup="dialog">
-          <span class="pc-media"><img src="proyectos/lapi/Apple_MacBook_Air_M1_Mockup_v03.jpeg" alt="Presentación del rediseño de identidad LAPI sobre computadora."></span>
-          <span class="pc-body">
-            <span class="pc-meta">Branding</span>
-            <span class="t-h3">LAPI y Coronel</span>
-            <span class="pc-desc">Rediseño de identidad para LAPI y desarrollo de la identidad de Coronel, vino de Baja California.</span>
-            <span class="pc-link">Ver caso →</span>
-          </span>
+          <span class="pc-media pc-red"><span class="pc-area">Branding</span></span>
         </button>
 
         <button class="project-card" type="button" data-proyecto="feria" aria-haspopup="dialog">
-          <span class="pc-media"><img src="proyectos/feria/Screenshot%202026-08-17%20at%208.19.14%E2%80%AFp.m..png" alt="Identidad e ilustración para la Feria del Libro de Aguascalientes."></span>
-          <span class="pc-body">
-            <span class="pc-meta">Ilustración</span>
-            <span class="t-h3">Feria del Libro</span>
-            <span class="pc-desc">Identidad e ilustración para la Feria del Libro de Aguascalientes.</span>
-            <span class="pc-link">Ver caso →</span>
-          </span>
+          <span class="pc-media pc-blue"><span class="pc-area">Ilustración</span></span>
         </button>
 
         <button class="project-card" type="button" data-proyecto="foto" aria-haspopup="dialog">
-          <span class="pc-media"><img src="proyectos/foto/IMG_0318_1.jpg" alt="Fotografía editorial y de producto de Gabriela Martínez Vega."></span>
-          <span class="pc-body">
-            <span class="pc-meta">Fotografía</span>
-            <span class="t-h3">Editorial y producto</span>
-            <span class="pc-desc">Fotografía editorial y de producto con encuadres cuidados.</span>
-            <span class="pc-link">Ver caso →</span>
-          </span>
+          <span class="pc-media pc-red"><span class="pc-area">Fotografía y Producción</span></span>
         </button>
 
         <button class="project-card" type="button" data-proyecto="modelado" aria-haspopup="dialog">
-          <span class="pc-media"><img src="proyectos/modelado/playspace_1_30.png" alt="Maquetación de stand 3D para Playmobil."></span>
-          <span class="pc-body">
-            <span class="pc-meta">Modelado 3D · Motion</span>
-            <span class="t-h3">Playmobil y personaje</span>
-            <span class="pc-desc">Maquetación de stand 3D para Playmobil, personaje y loops de movimiento.</span>
-            <span class="pc-link">Ver caso →</span>
-          </span>
+          <span class="pc-media pc-blue"><span class="pc-area">Modelado 3D</span></span>
         </button>
       </div>
     </div>
@@ -1346,11 +1774,17 @@ dialog::backdrop { background: rgba(0, 0, 0, 0.72); }
   <!-- ============ CONTACTO ============ -->
   <section id="contacto" class="contacto-band" aria-labelledby="contacto-title">
     <div class="contacto-inner">
-      <div>
-        <h2 id="contacto-title">¿Creamos algo con identidad?</h2>
-        <div class="contacto-cta">
-          <a class="btn btn-primary" href="mailto:gaby.vegart@gmail.com">Escríbeme</a>
-          <a class="btn btn-secondary" href="tel:+525574237525">Llámalo</a>
+      <div class="contacto-main">
+        <img class="contacto-mono" src="logo/mono_rojo.png" alt="Monograma GM de Gabriela Martínez Vega">
+        <div class="contacto-info">
+          <p class="fb-name">Gabriela Martínez Vega</p>
+          <p class="fb-role">Branding · Producción · Ilustración</p>
+          <h2 id="contacto-title">¿Creamos algo con identidad?</h2>
+          <div class="contacto-cta">
+            <a class="btn btn-primary" href="mailto:gaby.vegart@gmail.com">Contáctame</a>
+            <a class="btn btn-secondary" href="tel:+525574237525">Llámame</a>
+          </div>
+          <p class="footer-phrase">Identidad que toma forma y movimiento.</p>
         </div>
       </div>
       <ul class="contacto-list">
@@ -1375,47 +1809,66 @@ dialog::backdrop { background: rgba(0, 0, 0, 0.72); }
   </section>
 </main>
 
-<!-- ============ FOOTER ============ -->
-<footer class="site-footer">
-  <div class="footer-inner">
-    <div>
-      <div class="footer-brand">
-        <img src="logo/mono_rojo.png" alt="">
-        <div>
-          <p class="fb-name">Gabriela Martínez Vega</p>
-          <p class="fb-role">Branding · Motion Graphics · Ilustración</p>
-        </div>
-      </div>
-      <ul class="footer-contact" style="margin-top:var(--space-sm);">
-        <li><a href="mailto:gaby.vegart@gmail.com">Correo</a></li>
-        <li><a href="https://www.instagram.com/_gaby.mtzvega_" target="_blank" rel="noopener">Instagram</a></li>
-        <li><a href="https://www.tiktok.com/@_gaby.mtzvega_" target="_blank" rel="noopener">TikTok</a></li>
-      </ul>
-    </div>
-    <p class="footer-phrase">Identidad que toma forma y movimiento.</p>
-  </div>
-</footer>
-
 <!-- ============ MODAL DE PROYECTO ============ -->
 <dialog id="proyecto-dialog" aria-labelledby="proyecto-titulo">
+  <span class="mf mf-outer" aria-hidden="true"></span>
+  <span class="mf mf-inner" aria-hidden="true"></span>
   <div class="modal-scroll">
     <div class="modal-hero">
-      <img id="proyecto-portada" src="" alt="">
+      <div class="modal-banner" id="proyecto-banner"><span id="proyecto-area"></span></div>
       <button class="modal-close" type="button" data-modal-close aria-label="Cerrar detalle del proyecto">✕</button>
     </div>
     <div class="modal-body">
-      <p class="modal-meta" id="proyecto-meta"></p>
-      <h3 id="proyecto-titulo"></h3>
-      <div class="modal-block"><h4>Contexto</h4><p data-campo="contexto"></p></div>
-      <div class="modal-block"><h4>Problema</h4><p data-campo="problema"></p></div>
-      <div class="modal-block"><h4>Concepto</h4><p data-campo="concepto"></p></div>
-      <div class="modal-block"><h4>Proceso</h4><p data-campo="proceso"></p></div>
-      <div class="modal-block"><h4>Decisiones visuales</h4><p data-campo="decisiones"></p></div>
-      <div class="modal-block"><h4>Aplicaciones</h4><p data-campo="aplicaciones"></p></div>
-      <div class="modal-block"><h4>Resultado</h4><p data-campo="resultado"></p></div>
+      <div class="modal-cols" id="proyecto-cols">
+        <div class="modal-text">
+          <p class="modal-meta" id="proyecto-meta"></p>
+          <h3 id="proyecto-titulo"></h3>
+          <p class="modal-intro" id="proyecto-intro"></p>
+          <div class="modal-block"><h4>Contexto</h4><p data-campo="contexto"></p></div>
+          <div class="modal-block"><h4>Problema</h4><p data-campo="problema"></p></div>
+          <div class="modal-block"><h4>Concepto</h4><p data-campo="concepto"></p></div>
+          <div class="modal-block"><h4>Proceso</h4><p data-campo="proceso"></p></div>
+          <div class="modal-block"><h4>Decisiones visuales</h4><p data-campo="decisiones"></p></div>
+          <div class="modal-block"><h4>Aplicaciones</h4><p data-campo="aplicaciones"></p></div>
+          <div class="modal-block"><h4>Resultado</h4><p data-campo="resultado"></p></div>
+        </div>
+        <figure class="modal-logo" id="proyecto-logo-wrap">
+          <img id="proyecto-logo" src="" alt="">
+          <figcaption class="modal-logo-cap" id="proyecto-logo-cap"></figcaption>
+        </figure>
+      </div>
       <div id="proyecto-galeria" class="modal-gallery" aria-label="Galería del proyecto"></div>
+      <div class="modal-extra" id="modal-extra">
+        <div class="modal-cols">
+          <div class="modal-text">
+            <p class="modal-meta" id="proyecto-meta-2"></p>
+            <h3 id="proyecto-titulo-2"></h3>
+            <div class="modal-block"><h4>Contexto</h4><p data-campo2="contexto"></p></div>
+            <div class="modal-block"><h4>Problema</h4><p data-campo2="problema"></p></div>
+            <div class="modal-block"><h4>Concepto</h4><p data-campo2="concepto"></p></div>
+            <div class="modal-block"><h4>Proceso</h4><p data-campo2="proceso"></p></div>
+            <div class="modal-block"><h4>Decisiones visuales</h4><p data-campo2="decisiones"></p></div>
+          </div>
+          <figure class="modal-logo" id="proyecto-logo-wrap-2">
+            <img id="proyecto-logo-2" src="" alt="">
+          </figure>
+        </div>
+        <div id="proyecto-galeria-2" class="modal-gallery" aria-label="Galería del segundo proyecto"></div>
+      </div>
     </div>
   </div>
+</dialog>
+
+<!-- ============ LIGHTBOX CARRUSEL ============ -->
+<dialog id="lightbox-dialog" class="lightbox" aria-label="Visor de imágenes">
+  <button class="lb-btn lb-close" type="button" data-lb-close aria-label="Cerrar visor">✕</button>
+  <p class="lb-count" id="lb-count"></p>
+  <figure class="lb-stage">
+    <img id="lb-img" src="" alt="">
+    <figcaption id="lb-cap"></figcaption>
+  </figure>
+  <button class="lb-btn lb-arrow lb-prev" type="button" data-lb-prev aria-label="Imagen anterior">‹</button>
+  <button class="lb-btn lb-arrow lb-next" type="button" data-lb-next aria-label="Imagen siguiente">›</button>
 </dialog>
 
 <script>
@@ -1498,110 +1951,233 @@ dialog::backdrop { background: rgba(0, 0, 0, 0.72); }
   /* ============ MODAL DE PROYECTOS ============ */
   var PROYECTOS = {
     lapi: {
-      categoria: 'Branding · Identidad visual',
-      titulo: 'LAPI y Coronel',
-      portada: 'proyectos/lapi/Apple_MacBook_Air_M1_Mockup_v03.jpeg',
-      contexto: 'LAPI es un proyecto de identidad que necesitaba renovar su imagen; Coronel es un vino de Baja California que partía de cero en identidad de marca.',
+      categoria: 'Branding · Identidad de marca',
+      titulo: 'CORONEL',
+      portada: 'proyectos/coronel/vinos%20copy%202.png',
+      logo: 'proyectos/coronel/logo.png',
+      contexto: 'Coronel es un vino de Baja California que partía de cero en identidad de marca.',
       problema: 'Comunicar valores de origen y calidad con una identidad que se sintiera contemporánea pero con raíz editorial, y que funcionara en empaque, digital y piezas de comunicación.',
-      concepto: 'Sistemas visuales con base tipográfica y cromática de la marca: Winery Red como voz protagonista y estructura editorial clara.',
-      proceso: 'Investigación de la categoría, propuestas de concepto, desarrollo de logotipo y sistema gráfico, y aplicaciones en mockups.',
-      decisiones: 'Tipografía de identidad en titulares, paleta contenida de la marca y composición editorial en cada aplicación.',
-      aplicaciones: 'Imagen corporativa, empaque, presentaciones y piezas de comunicación digital.',
-      resultado: 'Una identidad con carácter, coherente y aplicable a distintos medios.',
+      concepto: 'Distinción Prestigiosa.',
+      proceso: 'Investigación de la categoría, análisis del usuario, propuestas de concepto, desarrollo de logotipo y sistema gráfico, y aplicaciones en mockups.',
+      decisiones: 'Tipografía de identidad en titulares y paleta contenida de la marca.',
       galeria: [
-        { src: 'proyectos/lapi/Screenshot%202026-08-17%20at%208.19.40%E2%80%AFp.m..png', alt: 'Aplicación de la identidad LAPI.' },
-        { src: 'proyectos/lapi/Screenshot%202026-08-17%20at%208.19.57%E2%80%AFp.m..png', alt: 'Pieza del sistema gráfico LAPI.' },
-        { src: 'proyectos/lapi/Screenshot%202026-08-17%20at%208.20.09%E2%80%AFp.m..png', alt: 'Variaciones de la identidad LAPI.' }
-      ]
+        { src: 'proyectos/coronel/vinos%20copy%202.png', alt: 'Sistema de etiquetas y botellas Coronel.' },
+        { src: 'proyectos/coronel/Screenshot%202026-08-23%20at%201.30.49%E2%80%AFa.m..png', alt: 'Aplicación de la identidad Coronel.' },
+        { src: 'proyectos/coronel/Screenshot%202026-08-23%20at%201.31.05%E2%80%AFa.m..png', alt: 'Piezas del sistema gráfico Coronel.' }
+      ],
+      extra: {
+        categoria: 'Branding · Identidad de marca',
+        titulo: 'LAPI',
+        logo: 'proyectos/lapi/logo.png',
+        contexto: 'LAPI es un proyecto de identidad que necesitaba renovar su imagen para conectar con una audiencia contemporánea.',
+        problema: 'Renovar la imagen manteniendo el reconocimiento de la marca y haciéndola funcional en digital y piezas de comunicación.',
+        concepto: 'Confianza e Innovación.',
+        proceso: 'Auditoría de la marca existente, análisis del usuario, propuestas de concepto, desarrollo de logotipo y sistema gráfico, y aplicaciones en mockups.',
+        decisiones: 'Tipografía de identidad en titulares y paleta contenida de la marca.',
+        galeria: [
+          { src: 'proyectos/lapi/Apple_MacBook_Air_M1_Mockup_v03.jpeg', alt: 'Identidad LAPI aplicada en laptop.' },
+          { src: 'proyectos/lapi/Screenshot%202026-08-17%20at%208.19.40%E2%80%AFp.m..png', alt: 'Aplicación de la identidad LAPI.' },
+          { src: 'proyectos/lapi/Screenshot%202026-08-17%20at%208.20.09%E2%80%AFp.m..png', alt: 'Piezas del sistema gráfico LAPI.' }
+        ]
+      }
     },
     feria: {
       categoria: 'Ilustración · Identidad',
-      titulo: 'Feria del Libro de Aguascalientes',
+      titulo: 'Feria del Libro',
       portada: 'proyectos/feria/Screenshot%202026-08-17%20at%208.19.14%E2%80%AFp.m..png',
-      contexto: 'Identidad e ilustración para la Feria del Libro de Aguascalientes, con una edición especial de Dr Pepper de temática deportiva.',
+      logo: 'proyectos/feria/Screenshot%202026-08-17%20at%208.19.14%E2%80%AFp.m..png',
+      logoAlt: 'Pieza principal ilustrada de la Feria del Libro.',
+      contexto: 'Identidad e ilustración para la Feria del Libro de Aguascalientes, con un lenguaje visual propio para cada edición.',
       problema: 'Contar con un lenguaje ilustrado propio que funcionara en cartelería, editorial y redes, distinguiendo cada edición.',
-      concepto: 'Ilustración con personalidad ligada al programa visual de cada edición, manteniendo un hilo de identidad.',
+      concepto: 'Utopía juvenil.',
       proceso: 'Definición del concepto, exploración de estilo ilustrado, desarrollo de piezas y ajuste a los distintos soportes.',
       decisiones: 'Tratamiento ilustrado coherente con la paleta y composiciones editoriales de gran escala.',
-      aplicaciones: 'Carteles, convocatorias, empaques de edición especial y contenido para redes.',
-      resultado: 'Una serie visual reconocible que conecta ilustración e identidad.',
       galeria: [
-        { src: 'proyectos/feria/Screenshot%202026-08-17%20at%208.19.30%E2%80%AFp.m..png', alt: 'Pieza ilustrada de la Feria del Libro.' },
-        { src: 'proyectos/pepper/LATA%20COCO.jpg', alt: 'Edición especial de Dr Pepper, sabor coco.' },
-        { src: 'proyectos/pepper/LATA%20FRESA.jpg', alt: 'Edición especial de Dr Pepper, sabor fresa.' },
-        { src: 'proyectos/pepper/LATA%20MORAS.jpg', alt: 'Edición especial de Dr Pepper, sabor moras.' }
-      ]
+        { src: 'proyectos/feria/Screenshot%202026-08-17%20at%208.19.30%E2%80%AFp.m..png', alt: 'Pieza ilustrada complementaria de la Feria del Libro.' },
+        { src: 'proyectos/feria/Screenshot%202026-08-23%20at%201.49.57%E2%80%AFa.m..png', alt: 'Pieza ilustrada adicional de la Feria del Libro.' }
+      ],
+      extra: {
+        categoria: 'Ilustración · Edición especial',
+        titulo: 'Latas Dr Pepper',
+        logo: 'proyectos/pepper/LATA%20COCO.jpg',
+        logoAlt: 'Lata Dr Pepper sabor coco.',
+        contexto: 'Serie de latas para una edición especial de Dr Pepper de temática deportiva, ligada al lenguaje ilustrado de la feria.',
+        problema: 'Dar personalidad ilustrada propia a cada sabor dentro de una misma familia visual.',
+        concepto: 'Aventuras compartidas.',
+        proceso: 'Exploración de estilo ilustrado, desarrollo de personajes y elementos gráficos por sabor, y aplicación sobre el empaque.',
+        decisiones: 'Paleta vibrante por sabor con un hilo ilustrado común y composiciones dinámicas.',
+        galeria: [
+          { src: 'proyectos/pepper/LATA%20FRESA.jpg', alt: 'Lata Dr Pepper sabor fresa.' },
+          { src: 'proyectos/pepper/LATA%20MORAS.jpg', alt: 'Lata Dr Pepper sabor moras.' }
+        ]
+      }
     },
     foto: {
-      categoria: 'Fotografía · Editorial y producto',
-      titulo: 'Editorial y producto',
+      categoria: '',
+      titulo: '',
       portada: 'proyectos/foto/IMG_0318_1.jpg',
-      contexto: 'Serie de fotografía editorial y de producto para mostrar la mirada visual aplicada a retratos, artes finales y piezas de gastronomía.',
-      problema: 'Lograr encuadres y tratamiento de color con carácter editorial manteniendo la apariencia real del material.',
-      concepto: 'Luz, composición y encuadre editorial como base de la fotografía.',
-      proceso: 'Producción de la sesión, dirección de encuadre y tratamiento coherente con la paleta.',
-      decisiones: 'Fotografía a color y en blanco y negro, con encuadres editoriales y acentos de la paleta.',
-      aplicaciones: 'Retrato, producto y artes para menús y piezas editoriales.',
-      resultado: 'Imágenes con presencia y coherencia visual para distintos proyectos.',
+      intro: 'Sección diseñada para mostrar diversos procesos de foto y producción seleccionados: desde la toma y edición fotográfica hasta las técnicas de producción aplicadas sobre objetos y empaques.',
       galeria: [
-        { src: 'proyectos/foto/FOTO%20CATRINA%20FINAL.png', alt: 'Fotografía editorial de personaje.' },
-        { src: 'proyectos/foto/Mock%20Up%20menu%CC%81_GMMV.png', alt: 'Aplicación fotográfica en mockup de menú.' }
-      ]
+        { src: 'proyectos/foto/FOTO%20CATRINA%20FINAL.png', cap: { t: 'Retrato para Día de Muertos', d: 'Toma y edición fotográfica, diseño de maquillaje y vestuario.' } },
+        { src: 'proyectos/foto/Mock%20Up%20menu%CC%81_GMMV.png', cap: { t: 'Product Shot para Menú', d: 'Toma y edición fotográfica, y diseño editorial basado en el menú de P.F. Chang\u2019s.' } }
+      ],
+      extra: {
+        categoria: '',
+        titulo: 'Diseño de Producción',
+        logo: '',
+        galeria: [
+          { src: 'proyectos/foto/producto/Screenshot%202026-08-23%20at%202.03.55%E2%80%AFa.m..png', cap: { t: 'Bolsa negra con elefante', d: 'Esgrafiado con vinil adhesivo.' } },
+          { src: 'proyectos/foto/producto/Screenshot%202026-08-23%20at%202.04.06%E2%80%AFa.m..png', cap: { t: 'Conejo en cuaderno beige', d: 'Grabado con linóleo.' } },
+          { src: 'proyectos/foto/producto/Screenshot%202026-08-23%20at%202.04.21%E2%80%AFa.m..png', cap: { t: 'Estuquera con caracoles', d: 'Ilustración análoga con vinil adhesivo.' } },
+          { src: 'proyectos/foto/producto/Screenshot%202026-08-23%20at%202.04.40%E2%80%AFa.m..png', cap: { t: 'Bolsa beige con alimentos', d: 'Ilustración digital con vinil adhesivo.' } }
+        ]
+      }
     },
     modelado: {
       categoria: 'Modelado 3D · Motion Graphics',
       titulo: 'Playmobil y personaje',
       portada: 'proyectos/modelado/playspace_1_30.png',
-      contexto: 'Maquetación de un stand 3D para Playmobil y desarrollo de un personaje animado, con loops de movimiento.',
-      problema: 'Comunicar espacio, escala y producto en 3D, y dar movimiento al personaje para piezas de Motion Graphics.',
-      concepto: 'Construcción 3D del espacio y del personaje como extensión de una narrativa visual animada.',
+      contexto: 'Maquetación de un stand 3D para Playmobil y desarrollo de un modelo de personaje.',
+      problema: 'Comunicar espacio, escala y producto en 3D, dar caracterización según el entorno a un personaje modelo.',
+      concepto: 'Exploración inmersiva.',
       proceso: 'Modelado del stand y del personaje, texturizado, iluminación y animación de vueltas completas.',
       decisiones: 'Paleta y materialidad de la marca en el stand; animación fluida del personaje en loop.',
-      aplicaciones: 'Presentaciones, videos de producto y piezas para Motion Graphics.',
-      resultado: 'Modelos 3D y loops animados listos para comunicación digital.',
+      logo: 'proyectos/modelado/personaje%20sin%20fondo.png',
+      logoAlt: 'Modelo de personaje posado.',
+      logoTall: true,
       galeria: [
-        { src: 'proyectos/modelado/playspace_1_44.png', alt: 'Vista adicional del stand 3D de Playmobil.' },
-        { src: 'proyectos/modelado/personaje%20sin%20fondo.png', alt: 'Personaje 3D renderizado sin fondo.' },
+        { src: 'proyectos/modelado/playspace_1_44.png', alt: 'Vista del stand 3D de Playmobil.' },
+        { video: { src: 'proyectos/modelado/turntable_casco.mp4', alt: 'Loop de movimiento del personaje 3D.' } },
         { src: 'proyectos/modelado/Personaje_GabrielaMartinez_1_0001%202.png', alt: 'Render del personaje 3D.' }
-      ],
-      video: { src: 'proyectos/modelado/turntable_casco.mp4', alt: 'Loop de movimiento del personaje 3D.' }
+      ]
     }
   };
 
   var dialog = document.getElementById('proyecto-dialog');
-  var portada = document.getElementById('proyecto-portada');
+  var AREAS = {
+    lapi: { nombre: 'Branding', color: 'red' },
+    feria: { nombre: 'Ilustración', color: 'blue' },
+    foto: { nombre: 'Fotografía y Producción', color: 'red' },
+    modelado: { nombre: 'Modelado 3D', color: 'blue' }
+  };
+  var banner = document.getElementById('proyecto-banner');
+  var areaEl = document.getElementById('proyecto-area');
   var meta = document.getElementById('proyecto-meta');
   var titulo = document.getElementById('proyecto-titulo');
   var galeria = document.getElementById('proyecto-galeria');
 
+  var pintarGaleria = function (cont, items) {
+    cont.innerHTML = '';
+    (items || []).forEach(function (g) {
+      if (g.video) {
+        var v = document.createElement('video');
+        v.src = g.video.src;
+        v.muted = true;
+        v.loop = true;
+        v.autoplay = true;
+        v.playsInline = true;
+        v.setAttribute('muted', '');
+        v.setAttribute('loop', '');
+        v.setAttribute('autoplay', '');
+        v.setAttribute('playsinline', '');
+        v.setAttribute('aria-label', g.video.alt || 'Video del proyecto');
+        var pr = v.play();
+        if (pr && pr.catch) { pr.catch(function () {}); }
+        cont.appendChild(v);
+        return;
+      }
+      var img = document.createElement('img');
+      img.src = g.src;
+      img.alt = (g.cap && g.cap.t) ? g.cap.t : (g.alt || '');
+      img.loading = 'lazy';
+      if (g.cap && g.cap.t) {
+        var fig = document.createElement('figure');
+        fig.className = 'mg-cap';
+        fig.appendChild(img);
+        var fc = document.createElement('figcaption');
+        var st = document.createElement('strong');
+        st.textContent = g.cap.t;
+        fc.appendChild(st);
+        fc.appendChild(document.createTextNode(g.cap.d || ''));
+        fig.appendChild(fc);
+        cont.appendChild(fig);
+      } else {
+        cont.appendChild(img);
+      }
+    });
+  };
+
   var abrir = function (key) {
     var p = PROYECTOS[key];
     if (!p) { return; }
-    portada.src = p.portada;
-    portada.alt = p.titulo;
-    meta.textContent = p.categoria;
-    titulo.textContent = p.titulo;
+    var infoArea = AREAS[key] || { nombre: '', color: 'blue' };
+    banner.className = 'modal-banner' + (infoArea.color === 'red' ? ' mb-red' : '');
+    areaEl.textContent = infoArea.nombre;
+    meta.textContent = p.categoria || '';
+    meta.style.display = p.categoria ? '' : 'none';
+    titulo.textContent = p.titulo || '';
+    titulo.style.display = p.titulo ? '' : 'none';
+    var logoWrap = document.getElementById('proyecto-logo-wrap');
+    var logoImg = document.getElementById('proyecto-logo');
+    var logoCap = document.getElementById('proyecto-logo-cap');
+    var colsEl = document.getElementById('proyecto-cols');
+    if (p.logo) {
+      logoImg.src = p.logo;
+      logoImg.alt = p.logoAlt || ('Imagen destacada del proyecto ' + p.titulo);
+      logoWrap.classList.toggle('tall', !!p.logoTall);
+      if (p.logoCap) { logoCap.textContent = p.logoCap; logoCap.style.display = ''; }
+      else { logoCap.style.display = 'none'; }
+      logoWrap.style.display = '';
+      if (colsEl) { colsEl.classList.remove('sin-logo'); }
+    } else {
+      logoWrap.style.display = 'none';
+      if (colsEl) { colsEl.classList.add('sin-logo'); }
+    }
+    var introEl = document.getElementById('proyecto-intro');
+    if (p.intro) { introEl.textContent = p.intro; introEl.style.display = ''; }
+    else { introEl.style.display = 'none'; }
     ['contexto', 'problema', 'concepto', 'proceso', 'decisiones', 'aplicaciones', 'resultado'].forEach(function (campo) {
       var el = dialog.querySelector('[data-campo="' + campo + '"]');
-      if (el) { el.textContent = p[campo]; }
+      var block = el ? el.closest('.modal-block') : null;
+      if (!el || !block) { return; }
+      if (p[campo]) {
+        el.textContent = p[campo];
+        block.style.display = '';
+      } else {
+        block.style.display = 'none';
+      }
     });
-    galeria.innerHTML = '';
-    p.galeria.forEach(function (g) {
-      var img = document.createElement('img');
-      img.src = g.src;
-      img.alt = g.alt;
-      img.loading = 'lazy';
-      galeria.appendChild(img);
-    });
-    if (p.video) {
-      var video = document.createElement('video');
-      video.src = p.video.src;
-      video.controls = true;
-      video.muted = true;
-      video.loop = true;
-      video.playsInline = true;
-      video.setAttribute('aria-label', p.video.alt);
-      galeria.appendChild(video);
+    pintarGaleria(galeria, p.galeria);
+    var extraWrap = document.getElementById('modal-extra');
+    if (p.extra && extraWrap) {
+      var meta2 = document.getElementById('proyecto-meta-2');
+      var titulo2 = document.getElementById('proyecto-titulo-2');
+      var logoWrap2 = document.getElementById('proyecto-logo-wrap-2');
+      var logoImg2 = document.getElementById('proyecto-logo-2');
+      meta2.textContent = p.extra.categoria;
+      meta2.style.display = p.extra.categoria ? '' : 'none';
+      titulo2.textContent = p.extra.titulo;
+      var cols2 = extraWrap.querySelector('.modal-cols');
+      if (p.extra.logo) {
+        logoImg2.src = p.extra.logo;
+        logoImg2.alt = 'Imagen destacada del proyecto ' + p.extra.titulo;
+        logoWrap2.style.display = '';
+        if (cols2) { cols2.classList.remove('sin-logo'); }
+      } else {
+        logoWrap2.style.display = 'none';
+        if (cols2) { cols2.classList.add('sin-logo'); }
+      }
+      Array.prototype.forEach.call(extraWrap.querySelectorAll('[data-campo2]'), function (el) {
+        var val = p.extra[el.getAttribute('data-campo2')] || '';
+        el.textContent = val;
+        var blk = el.closest('.modal-block');
+        if (blk) { blk.style.display = val ? '' : 'none'; }
+      });
+      var galeria2 = document.getElementById('proyecto-galeria-2');
+      pintarGaleria(galeria2, p.extra.galeria);
+      extraWrap.style.display = '';
+    } else if (extraWrap) {
+      extraWrap.style.display = 'none';
     }
     if (typeof dialog.showModal === 'function') {
       dialog.showModal();
@@ -1620,6 +2196,60 @@ dialog::backdrop { background: rgba(0, 0, 0, 0.72); }
     if (typeof dialog.close === 'function') { dialog.close(); }
     else { dialog.removeAttribute('open'); }
   };
+
+  /* ============ LIGHTBOX CARRUSEL ============ */
+  var lbDialog = document.getElementById('lightbox-dialog');
+  var lbImg = document.getElementById('lb-img');
+  var lbCap = document.getElementById('lb-cap');
+  var lbCount = document.getElementById('lb-count');
+  var LB = { items: [], idx: 0, total: 0 };
+
+  var lbShow = function (i) {
+    if (!LB.total) { return; }
+    LB.idx = ((i % LB.total) + LB.total) % LB.total;
+    var it = LB.items[LB.idx];
+    lbImg.src = it.src;
+    lbImg.alt = it.alt;
+    lbCap.textContent = it.cap || '';
+    lbCap.style.display = it.cap ? '' : 'none';
+    lbCount.textContent = (LB.idx + 1) + ' / ' + LB.total;
+    if (typeof lbDialog.showModal === 'function' && !lbDialog.open) { lbDialog.showModal(); }
+  };
+  window.lbNext = function () { lbShow(LB.idx + 1); };
+  window.lbPrev = function () { lbShow(LB.idx - 1); };
+
+  dialog.addEventListener('click', function (e) {
+    var t = e.target;
+    if (!t || t.tagName !== 'IMG') { return; }
+    var imgs = dialog.querySelectorAll('.modal-gallery img, .modal-logo img');
+    var idx = Array.prototype.indexOf.call(imgs, t);
+    if (idx < 0) { return; }
+    LB.items = Array.prototype.map.call(imgs, function (im) {
+      var fig = im.closest('figure');
+      var fc = fig ? fig.querySelector('figcaption') : null;
+      return {
+        src: im.getAttribute('src'),
+        alt: im.alt || '',
+        cap: fc ? fc.textContent.replace(/\s+/g, ' ').trim() : ''
+      };
+    });
+    LB.total = LB.items.length;
+    lbShow(idx);
+  });
+
+  var lbCloseBtn = lbDialog.querySelector('[data-lb-close]');
+  var lbPrevBtn = lbDialog.querySelector('[data-lb-prev]');
+  var lbNextBtn = lbDialog.querySelector('[data-lb-next]');
+  if (lbCloseBtn) { lbCloseBtn.addEventListener('click', function () { lbDialog.close(); }); }
+  if (lbPrevBtn) { lbPrevBtn.addEventListener('click', window.lbPrev); }
+  if (lbNextBtn) { lbNextBtn.addEventListener('click', window.lbNext); }
+  lbDialog.addEventListener('click', function (e) {
+    if (e.target === lbDialog || e.target.classList.contains('lb-stage')) { lbDialog.close(); }
+  });
+  lbDialog.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight') { window.lbNext(); }
+    else if (e.key === 'ArrowLeft') { window.lbPrev(); }
+  });
 
   var closeBtn = dialog.querySelector('[data-modal-close]');
   if (closeBtn) { closeBtn.addEventListener('click', cerrar); }
