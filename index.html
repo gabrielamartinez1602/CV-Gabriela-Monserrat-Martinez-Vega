@@ -168,6 +168,12 @@
    ============================================================ */
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
+html, body { cursor: url('img/cursor/rombo_azul.png') 15 15, auto; }
+a, button, [role="button"], input, select, textarea, label[for], summary,
+.project-card, .btn, .theme-toggle, .nav-toggle, .audio-btn, .lb-btn,
+.modal-close, [data-proyecto] {
+  cursor: url('img/cursor/rombo_rojo.png') 15 15, pointer !important;
+}
 body {
   margin: 0;
   background: var(--color-surface);
@@ -1365,6 +1371,40 @@ dialog[open] .mf-inner { animation: mf-in 0.45s ease-out 0.2s backwards; }
 }
 
 /* ============================================================
+   CONTROL DE MUSICA DE FONDO
+   ============================================================ */
+.audio-controls {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.audio-btn {
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: var(--color-on-neutral);
+  border: 1px solid var(--color-on-neutral);
+  border-radius: var(--radius-none);
+  font-size: 17px;
+  line-height: 1;
+  font-family: var(--font-body);
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+.audio-btn svg { margin: 0 auto; }
+.audio-btn:hover { border-color: var(--color-primary-soft); color: var(--color-primary-soft); }
+.audio-btn svg { width: 18px; height: 18px; }
+.audio-btn .snd-off { display: none; }
+.audio-btn.is-muted .snd-on { display: none; }
+.audio-btn.is-muted .snd-off { display: block; }
+.audio-btn.is-muted { opacity: 0.55; }
+
+/* ============================================================
    LIGHTBOX CARRUSEL
    ============================================================ */
 .lightbox {
@@ -1431,10 +1471,35 @@ dialog[open] .mf-inner { animation: mf-in 0.45s ease-out 0.2s backwards; }
 }
 .lb-btn:hover { background: var(--color-primary); border-color: var(--color-primary); transform: scale(1.05); }
 .lb-close { top: 16px; right: 16px; }
-.lb-arrow { top: 50%; margin-top: -23px; }
-.lb-prev { left: 14px; }
-.lb-next { right: 14px; }
-.modal-gallery img, .modal-logo img, .mg-cap img { cursor: zoom-in; }
+.lb-arrow {
+  top: 50%;
+  margin-top: -23px;
+  width: 52px;
+  height: 52px;
+  border-radius: 6px;
+  transform: rotate(45deg);
+  background: transparent;
+  border: 1.5px solid rgba(255, 255, 255, 0.8);
+}
+.lb-arrow::before {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+.lb-arrow span {
+  transform: rotate(-45deg);
+  font-size: 30px;
+  line-height: 1;
+}
+.lb-arrow:hover { background: var(--color-primary); border-color: var(--color-primary); transform: rotate(45deg) scale(1.06); }
+.lb-prev { left: 18px; }
+.lb-next { right: 18px; }
+.modal-gallery img, .modal-logo img, .mg-cap img { cursor: url('img/cursor/rombo_azul.png') 15 15, pointer !important; }
+.modal-gallery img:hover, .modal-logo img:hover, .mg-cap img:hover,
+.modal-gallery img:active, .modal-logo img:active, .mg-cap img:active { cursor: url('img/cursor/rombo_rojo.png') 15 15, pointer !important; }
+.modal-gallery img:hover, .modal-logo img:hover, .mg-cap img:hover,
+.modal-gallery img:active, .modal-logo img:active, .mg-cap img:active { cursor: url('img/cursor/rombo_azul.png') 15 15, pointer; }
 
 /* ============================================================
    RESPONSIVE — 600px / 1180px / 1440px
@@ -1489,6 +1554,13 @@ dialog[open] .mf-inner { animation: mf-in 0.45s ease-out 0.2s backwards; }
       <img class="brand-name" src="logo/nombre_blanco_crop.png" alt="Gabriela Martínez Vega">
     </a>
     <div style="display:flex;gap:8px;align-items:center;">
+      <div class="audio-controls" role="group" aria-label="Música de fondo">
+        <button class="audio-btn" type="button" data-vol-down aria-label="Bajar volumen">−</button>
+        <button class="audio-btn audio-mute" type="button" data-mute-toggle aria-pressed="false" aria-label="Silenciar o activar sonido">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4Z"/><path class="snd-on" d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/><path class="snd-off" d="M17 9l5 6M22 9l-5 6"/></svg>
+        </button>
+        <button class="audio-btn" type="button" data-vol-up aria-label="Subir volumen">+</button>
+      </div>
       <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menú">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
         <span>Menú</span>
@@ -1869,9 +1941,11 @@ dialog[open] .mf-inner { animation: mf-in 0.45s ease-out 0.2s backwards; }
     <img id="lb-img" src="" alt="">
     <figcaption id="lb-cap"></figcaption>
   </figure>
-  <button class="lb-btn lb-arrow lb-prev" type="button" data-lb-prev aria-label="Imagen anterior">‹</button>
-  <button class="lb-btn lb-arrow lb-next" type="button" data-lb-next aria-label="Imagen siguiente">›</button>
+  <button class="lb-btn lb-arrow lb-prev" type="button" data-lb-prev aria-label="Imagen anterior"><span>‹</span></button>
+  <button class="lb-btn lb-arrow lb-next" type="button" data-lb-next aria-label="Imagen siguiente"><span>›</span></button>
 </dialog>
+
+<audio id="bgm" src="assets/audio/fondo_instrumental.wav" loop preload="auto"></audio>
 
 <script>
 (function () {
@@ -1900,6 +1974,68 @@ dialog[open] .mf-inner { animation: mf-in 0.45s ease-out 0.2s backwards; }
     toggleBtn.addEventListener('click', function () {
       applyTheme(rootEl.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
     });
+  }
+
+  /* ============ MUSICA DE FONDO ============ */
+  var bgm = document.getElementById('bgm');
+  if (bgm) {
+    bgm.loop = true;
+    var VOL_STEP = 0.06;
+    var volGuardada = null;
+    try { volGuardada = parseFloat(localStorage.getItem('cv-vol')); } catch (e) { /* noop */ }
+    var volumen = (!isNaN(volGuardada)) ? Math.min(1, Math.max(0, volGuardada)) : 0.18;
+    var muteGuardado = false;
+    try { muteGuardado = localStorage.getItem('cv-muted') === '1'; } catch (e) { /* noop */ }
+
+    var muteBtn = document.querySelector('[data-mute-toggle]');
+    var aplicarVolumen = function () {
+      bgm.volume = volumen;
+      try {
+        localStorage.setItem('cv-vol', String(volumen));
+        localStorage.setItem('cv-muted', muteGuardado ? '1' : '0');
+      } catch (e) { /* noop */ }
+      if (muteBtn) {
+        muteBtn.classList.toggle('is-muted', muteGuardado);
+        muteBtn.setAttribute('aria-pressed', muteGuardado ? 'true' : 'false');
+        muteBtn.setAttribute('aria-label', muteGuardado ? 'Activar sonido' : 'Silenciar');
+      }
+    };
+
+    var iniciar = function () {
+      if (muteGuardado) { return; }
+      var pr = bgm.play();
+      if (pr && pr.catch) { pr.catch(function () { /* espera interaccion */ }); }
+    };
+    var desbloqueado = false;
+    var desbloqueo = function () {
+      if (desbloqueado) { return; }
+      desbloqueado = true;
+      iniciar();
+      document.removeEventListener('pointerdown', desbloqueo);
+      document.removeEventListener('keydown', desbloqueo);
+      document.removeEventListener('wheel', desbloqueo);
+      document.removeEventListener('touchstart', desbloqueo);
+    };
+    document.addEventListener('pointerdown', desbloqueo);
+    document.addEventListener('keydown', desbloqueo);
+    document.addEventListener('wheel', desbloqueo, { passive: true });
+    document.addEventListener('touchstart', desbloqueo, { passive: true });
+    document.addEventListener('visibilitychange', function () {
+      if (!document.hidden && !muteGuardado && bgm.paused && desbloqueado) { iniciar(); }
+    });
+
+    var btnDown = document.querySelector('[data-vol-down]');
+    var btnUp = document.querySelector('[data-vol-up]');
+    if (btnDown) { btnDown.addEventListener('click', function () { volumen = Math.max(0, +(volumen - VOL_STEP).toFixed(2)); aplicarVolumen(); }); }
+    if (btnUp) { btnUp.addEventListener('click', function () { volumen = Math.min(1, +(volumen + VOL_STEP).toFixed(2)); aplicarVolumen(); }); }
+    if (muteBtn) {
+      muteBtn.addEventListener('click', function () {
+        muteGuardado = !muteGuardado;
+        if (muteGuardado) { bgm.pause(); } else { iniciar(); }
+        aplicarVolumen();
+      });
+    }
+    aplicarVolumen();
   }
 
   /* ============ MENÚ HAMBURGUESA ============ */
