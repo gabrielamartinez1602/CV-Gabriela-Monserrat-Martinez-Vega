@@ -1319,6 +1319,32 @@ dialog[open] .mf-inner { animation: mf-in 0.45s ease-out 0.2s backwards; }
   margin-bottom: 3px;
 }
 .modal-extra { margin-top: var(--space-lg); padding-top: var(--space-md); border-top: var(--border-thin); }
+.modal-gallery.is-split { display: block; }
+.mg-split {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: var(--space-xs);
+  align-items: stretch;
+}
+.mg-split .mg-left {
+  margin: 0;
+  border: var(--border-thin);
+  background: var(--color-surface-alt);
+  overflow: hidden;
+}
+.mg-split .mg-left img { width: 100%; height: 100%; min-height: 320px; object-fit: cover; }
+.mg-right {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xs);
+}
+.mg-right > * {
+  height: 190px;
+  margin: 0;
+}
+@media (max-width: 599px) {
+  .mg-split { grid-template-columns: 1fr; }
+}
 .modal-logo { margin: 0; padding: var(--space-sm); background: var(--color-surface-alt); display: flex; align-items: center; justify-content: center; }
 .modal-logo img { width: 100%; max-height: 320px; object-fit: contain; }
 .modal-logo.tall {
@@ -2185,13 +2211,13 @@ dialog[open] .mf-inner { animation: mf-in 0.45s ease-out 0.2s backwards; }
       logo: 'proyectos/modelado/personaje%20sin%20fondo.png',
       logoAlt: 'Modelo de personaje posado.',
       logoTall: true,
+      layout: 'split',
+      splitLeft: { src: 'proyectos/modelado/personaje_render_3.jpg', alt: 'Render adicional del personaje 3D.' },
       galeria: [
         { src: 'proyectos/modelado/playspace_1_44.png', alt: 'Vista del stand 3D de Playmobil.' },
         { video: { src: 'proyectos/modelado/turntable_casco.mp4', alt: 'Loop de movimiento del personaje 3D.' } },
         { src: 'proyectos/modelado/Personaje_GabrielaMartinez_1_0001%202.png', alt: 'Render del personaje 3D.' },
-        { src: 'proyectos/modelado/playspace_1_30.jpg', alt: 'Vista adicional del stand Playmobil.' },
-        { src: 'proyectos/modelado/personaje_render_3.jpg', alt: 'Render adicional del personaje 3D.' },
-        { src: 'proyectos/modelado/personaje_render_4.jpg', alt: 'Render alternativo del personaje 3D.' }
+        { src: 'proyectos/modelado/playspace_1_30.jpg', alt: 'Vista adicional del stand Playmobil.' }
       ]
     }
   };
@@ -2290,7 +2316,15 @@ dialog[open] .mf-inner { animation: mf-in 0.45s ease-out 0.2s backwards; }
         block.style.display = 'none';
       }
     });
-    pintarGaleria(galeria, p.galeria);
+    if (p.layout === 'split') {
+      galeria.classList.add('is-split');
+      galeria.innerHTML = '<div class="mg-split"><figure class="mg-left"></figure><div class="mg-right"></div></div>';
+      pintarGaleria(galeria.querySelector('.mg-left'), [p.splitLeft]);
+      pintarGaleria(galeria.querySelector('.mg-right'), p.galeria);
+    } else {
+      galeria.classList.remove('is-split');
+      pintarGaleria(galeria, p.galeria);
+    }
     var extraWrap = document.getElementById('modal-extra');
     if (p.extra && extraWrap) {
       var meta2 = document.getElementById('proyecto-meta-2');
